@@ -30,7 +30,7 @@ export type Dog = {
 };
 
 export default async function Dogs() {
-	const URL = process.env.NEXT_PUBLIC_SERVER_URL;
+	const URL = "https://laverdaboom-api.herokuapp.com";
 
 	const res = await fetch(`${URL}/dogs`);
 	const dogs: Dog[] = await res.json();

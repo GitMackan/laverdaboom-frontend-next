@@ -446,8 +446,11 @@ const Update = () => {
 								Titlar:
 							</label>
 							<div className="flex flex-wrap x-gap-[1rem] gap-[0.5rem]">
-								{titles?.map((e) => (
-									<div className="bg-grey flex justify-between items-center border-dark border-[0.5px] w-fit py-[0.5rem] px-[1rem] my-[0.5rem] gap-[0.5rem] rounded-[10px]">
+								{titles?.map((e, i) => (
+									<div
+										key={i}
+										className="bg-grey flex justify-between items-center border-dark border-[0.5px] w-fit py-[0.5rem] px-[1rem] my-[0.5rem] gap-[0.5rem] rounded-[10px]"
+									>
 										<p>{e}</p>
 										<FiX
 											style={{ cursor: "pointer" }}

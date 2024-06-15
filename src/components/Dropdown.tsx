@@ -100,6 +100,7 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 							<li
 								id={dog.name}
 								className="cursor-pointer bg-white font-secondary] hover:bg-[#e8f1f2]"
+								key={dog._id}
 							>
 								<div>
 									<Link href={`/dogs/${dog.nickName}`}>
@@ -119,6 +120,7 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 							<li
 								id={dog.name}
 								className="cursor-pointer bg-white font-secondary] hover:bg-[#e8f1f2]"
+								key={dog._id}
 							>
 								<div>
 									<Link href={`/dogs/${dog.nickName}`}>

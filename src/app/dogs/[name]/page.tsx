@@ -3,17 +3,19 @@ import { Dog } from "../page";
 import Sidebar from "@/components/Sidebar";
 import { assetUrl, colors } from "@/assets/constants";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
-import { motion } from "framer-motion";
 import AnimatedListItem from "@/components/AnimatedListItem";
 
-export default async function Dog({ params }: { params: { name: string } }) {
-	const URL = process.env.NEXT_PUBLIC_SERVER_URL;
-	console.log(URL);
+export default async function SpecificDog({
+	params,
+}: {
+	params: { name: string };
+}) {
+	const URL = "https://laverdaboom-api.herokuapp.com";
 
-	const getDogs = await fetch(`${URL}/dogs`);
+	const getDogs = await fetch(URL + "/dogs");
 	const dogs: Dog[] = await getDogs.json();
 
-	const getDog = await fetch(`${URL}/dogs/${params.name}`);
+	const getDog = await fetch(URL + "/dogs/" + params.name);
 	const dog: Dog = await getDog.json();
 
 	const images: any = dog?.image.map((e) => ({
@@ -168,6 +170,7 @@ export default async function Dog({ params }: { params: { name: string } }) {
 										{dog?.titles.map((e, index) => (
 											<AnimatedListItem
 												index={index}
+												key={index}
 												className="flex w-full sm:w-[250px] text-accent font-medium p-[0.5rem] items-center gap-[0.6rem] h-[50px] text-[1.2rem] justify-start font-secondary border-[#faeded] border-b-[2px]"
 											>
 												<FiAward color={"#324b4c"} size={24} />
