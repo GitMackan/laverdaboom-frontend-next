@@ -35,7 +35,7 @@ const News = () => {
 		}
 	};
 
-	const access_token = process.env.NEXT_PUBLIC_INSTAGRAM_ACCESS_TOKEN;
+	const access_token = process.env.INSTAGRAM_ACCESS_TOKEN;
 
 	useEffect(() => {
 		setLoading(true);
