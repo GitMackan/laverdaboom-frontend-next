@@ -30,7 +30,7 @@ export type Dog = {
 };
 
 export default async function Dogs() {
-	const URL = "https://laverdaboom-api.herokuapp.com";
+	const URL = process.env.INSTAGRAM_ACCESS_TOKEN;
 
 	const res = await fetch(`${URL}/dogs`);
 	const dogs: Dog[] = await res.json();
