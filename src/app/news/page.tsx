@@ -55,6 +55,8 @@ const News = () => {
 		setCurrentVideo(index);
 	};
 
+	const test = process.env.NEXT_PUBLIC_TEST;
+
 	return (
 		<div
 			className="pt-[15vh]"
@@ -66,6 +68,7 @@ const News = () => {
 			<h2 className="text-center m-auto mt-[2rem] font-cursive text-[5rem] border-detail border-b-[1px] w-fit pb-[0.5rem]">
 				Nyheter
 			</h2>
+			<p>{test ?? "Hittade ej"}</p>
 			<p className="w-[80%] m-auto text-center max-w-[600px] mt-[2rem] text-[1.2rem] mb-[2rem] font-secondary">
 				Håll dig uppdaterad om nyheter i kenneln genom Sandras instagram!
 			</p>
