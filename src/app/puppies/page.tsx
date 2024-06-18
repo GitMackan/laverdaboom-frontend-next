@@ -169,8 +169,8 @@ const Puppies = () => {
 								Planerad valpkull
 							</h2>
 							<p className="font-extralight">
-								Vi planerar en kull till sommaren 2024 mer information kommer
-								när parningen är gjord.
+								Nu är Bella och Sirocco parade. Om allt går som det ska väntar
+								vi valpar i mitten av Augusti.
 							</p>
 							<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
 								<BsGenderMale size={40} className={"gender-icon"} />
@@ -196,7 +196,7 @@ const Puppies = () => {
 								href={"/puppies"}
 								className="font-extralight underline underline-offset-4"
 							>
-								Läs mer om våra valpar här
+								Köpa valp från oss? Titta hit.
 							</Link>
 						</div>
 					</AnimatedListItem>

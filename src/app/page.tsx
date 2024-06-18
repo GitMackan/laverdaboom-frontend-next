@@ -2,7 +2,6 @@
 
 import { assetUrl } from "@/assets/constants";
 import HeroSection from "@/components/HeroSection";
-import { ImageCard } from "@/components/ImageCard";
 import Reveal from "@/components/Reveal";
 import Link from "next/link";
 import { useRef } from "react";
@@ -81,12 +80,12 @@ export default function Home() {
 						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
 				}}
 			>
-				<div className="py-[3rem] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
+				<div className="py-[3rem] flex-[2] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
 					<div className="flex flex-col gap-[2rem] m-auto mt-[2rem] lg:ml-[2rem] w-full flex-1">
 						<Reveal>
 							<img
 								src={`${assetUrl}Sirocco.jpeg`}
-								className="min-w-[300px] w-full max-w-[600px] m-auto rounded-xl"
+								className="min-w-[300px] w-full max-w-[400px] m-auto rounded-xl"
 								style={{
 									boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
 								}}
@@ -95,7 +94,7 @@ export default function Home() {
 						<Reveal>
 							<img
 								src={`${assetUrl}bella1.jpg`}
-								className="min-w-[300px] w-full max-w-[600px] m-auto rounded-xl"
+								className="min-w-[300px] w-full max-w-[400px] m-auto rounded-xl"
 								style={{
 									boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
 								}}
@@ -103,54 +102,40 @@ export default function Home() {
 						</Reveal>
 					</div>
 
-					<div className="p-[0.5rem] lg:p-[3rem] w-full flex flex-col justify-center items-center flex-1">
-						<Reveal>
-							<h2 className="text-[3.5rem] lg:text-[4rem] font-cursive text-center color-accent mb-[2rem]">
-								Planerad valpkull
-							</h2>
-						</Reveal>
-						<Reveal>
+					<div className="p-[0.5rem] lg:p-[3rem] w-full flex flex-col justify-center items-center flex-[1]">
+						<h2 className="text-[3.5rem] lg:text-[4rem] font-cursive text-center color-accent mb-[2rem] border-accent border-b-[1px] w-fit m-auto">
+							Planerad valpkull
+						</h2>
+						<p className="font-extralight">
+							Nu är Bella och Sirocco parade. Om allt går som det ska väntar vi
+							valpar i mitten av Augusti.
+						</p>
+						<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
+							<BsGenderMale size={40} className={"gender-icon"} />
 							<p className="font-extralight">
-								Vi planerar en kull till sommaren 2024 mer information kommer
-								när parningen är gjord.
+								<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
+									Sire:
+								</b>{" "}
+								SE U(V)CH SE VCH Pazir's Sirocco (Ögus Nappe x Koppargläntans
+								Debbi Fergusson) Öga UA IVDD0
 							</p>
-						</Reveal>
-						<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
-							<Reveal width="fit-content">
-								<BsGenderMale size={40} className={"gender-icon"} />
-							</Reveal>
-							<Reveal>
-								<p className="font-extralight">
-									<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
-										Sire:
-									</b>{" "}
-									SE U(V)CH SE VCH Pazir's Sirocco (Ögus Nappe x Koppargläntans
-									Debbi Fergusson) Öga UA IVDD0
-								</p>
-							</Reveal>
 						</div>
 						<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
-							<Reveal width="fit-content">
-								<BsGenderFemale size={40} className={"gender-icon"} />
-							</Reveal>
-							<Reveal>
-								<p className="font-extralight">
-									<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
-										Dam:
-									</b>{" "}
-									SE U(V)CH Bella Rose Marzenie Gabrysi (Figarro Rude x Secret
-									Garden Slim Extreme) Öga UA Bph-Genomförd
-								</p>
-							</Reveal>
+							<BsGenderFemale size={40} className={"gender-icon"} />
+							<p className="font-extralight">
+								<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
+									Dam:
+								</b>{" "}
+								SE U(V)CH Bella Rose Marzenie Gabrysi (Figarro Rude x Secret
+								Garden Slim Extreme) Öga UA Bph-Genomförd
+							</p>
 						</div>
-						<Reveal align="center">
-							<Link
-								href={"/puppies"}
-								className="font-extralight underline underline-offset-4"
-							>
-								Läs mer om våra valpar här
-							</Link>
-						</Reveal>
+						<Link
+							href={"/puppies"}
+							className="font-extralight underline underline-offset-4"
+						>
+							Köpa valp från oss? Titta hit.
+						</Link>
 					</div>
 				</div>
 			</div>
