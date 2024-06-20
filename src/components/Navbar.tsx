@@ -10,7 +10,15 @@ import { usePathname } from "next/navigation";
 const navItems = [
 	{ label: "Hem", href: "/" },
 	{ label: "Våra hundar", href: "/dogs" },
-	{ label: "Valpar", href: "/puppies" },
+	{
+		label: "Valpar",
+		href: "/puppies",
+		childLinks: [
+			{ name: "Valpköp", href: "/puppies" },
+			{ name: "Tidigare valpar", href: "/puppies/previous" },
+			{ name: "Plannerade valpar", href: "/puppies/planned" },
+		],
+	},
 	{ label: "Nyheter", href: "/news" },
 	{ label: "Kontakt", href: "/contact" },
 ];
@@ -33,6 +41,8 @@ const Navbar = () => {
 	const pathname = usePathname();
 	const [topScroll, setTopScroll] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
+	const [isHovered, setIsHovered] = useState(false);
+	const [mobilePuppieSectionOpen, setMobilePuppieSectionOpen] = useState(false);
 	const changeBackground = () => {
 		if (window.scrollY >= 80) {
 			setTopScroll(false);
@@ -103,8 +113,7 @@ const Navbar = () => {
 			className="fixed w-full flex justify-between items-center py-[1rem] px-[2rem] z-10 min-h-[10vh]"
 			id="navbar"
 			style={{
-				background:
-					pathname === "/contact" ? "#FFF" : topScroll ? "transparent" : "#FFF",
+				background: topScroll ? "transparent" : "#FFF",
 			}}
 		>
 			<div className="flex items-center justify-center">
@@ -136,10 +145,32 @@ const Navbar = () => {
 						Våra hundar
 					</CustomLink>
 				</div>
-				<div>
+				<div
+					className="relative"
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+				>
 					<CustomLink to="/puppies" active={pathname === "/puppies"}>
 						Valpar
 					</CustomLink>
+					<div className="absolute w-fit flex flex-col left-[10px] bg-[#fff]">
+						{isHovered && (
+							<>
+								<Link
+									href="/puppies/previous"
+									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
+								>
+									Tidigare valpar
+								</Link>
+								<Link
+									href="/puppies/planned"
+									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
+								>
+									Planerade valpar
+								</Link>
+							</>
+						)}
+					</div>
 				</div>
 				<div>
 					<CustomLink to="/news" active={pathname === "/news"}>
@@ -177,7 +208,13 @@ const Navbar = () => {
 						<ul className="navbar-smallscreen_links">
 							{navItems.map((e, index) => (
 								<motion.li
-									onClick={() => setMenuOpen(false)}
+									onClick={() => {
+										if (e.label.toLowerCase() === "valpar") {
+											setMobilePuppieSectionOpen(!mobilePuppieSectionOpen);
+										} else {
+											setMenuOpen(false);
+										}
+									}}
 									key={index}
 									variants={fadeInAnimationVariants}
 									initial="initial"
@@ -185,12 +222,38 @@ const Navbar = () => {
 									custom={index}
 									className="m-[2rem] cursor-pointer text-[1.4rem] text-center"
 								>
-									<Link
-										href={e.href}
-										className="font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[1.1rem]"
-									>
-										{e.label}
-									</Link>
+									{e.label.toLowerCase() !== "valpar" ? (
+										<Link
+											href={e.href}
+											className="font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[1.1rem]"
+										>
+											{e.label}
+										</Link>
+									) : (
+										<p
+											className="font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[1.1rem]"
+											onClick={() =>
+												setMobilePuppieSectionOpen(!mobilePuppieSectionOpen)
+											}
+										>
+											{e.label}
+										</p>
+									)}
+									{mobilePuppieSectionOpen && (
+										<div className="flex flex-col">
+											{e.childLinks?.map((e, i) => (
+												<Link
+													href={e.href}
+													onClick={() => setMenuOpen(false)}
+													className={`font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[.9rem] ${
+														i === 0 ? "mt-[.4rem]" : "0"
+													}`}
+												>
+													{e.name}
+												</Link>
+											))}
+										</div>
+									)}
 								</motion.li>
 							))}
 						</ul>
