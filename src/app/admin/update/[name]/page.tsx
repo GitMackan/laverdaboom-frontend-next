@@ -25,6 +25,7 @@ const Update = () => {
 	const [eyes, setEyes] = useState<string | undefined>();
 	const [birthDate, setBirthDate] = useState<string | undefined>();
 	const [titles, setTitles] = useState<string[]>([]);
+	const [images, setImages] = useState<any>();
 	const [description, setDescription] = useState<string | undefined>();
 	const [cookies, setCookie] = useCookies(["LAVERDABOOM-AUTH"]);
 	const [image, setImage] = useState<any>();
@@ -74,19 +75,15 @@ const Update = () => {
 			setTitles(dog.titles as string[]);
 			setPedigree(dog.pedigree);
 			setNickName(dog.nickName);
+			setImages(dog.image);
 		}
 	}, [dog]);
-
-	useEffect(() => {
-		setSelectedImg(undefined);
-		setImage(undefined);
-	}, [selectedDogId]);
 
 	const onSubmit = async (e: any) => {
 		e.preventDefault();
 		try {
 			await axios.patch(
-				`${URL}/dogs/${selectedDogId}`,
+				`${URL}/dogs/${dog?._id}`,
 				{
 					name: name,
 					breed: breed && breed,
@@ -99,7 +96,7 @@ const Update = () => {
 					eye: eyes && eyes,
 					birthDate: birthDate && birthDate,
 					description: description && description,
-					image: selectedDog && selectedDog.image,
+					image: dog && dog.image,
 					file: image && image,
 					titles: titles && titles,
 					sessionToken: cookie,
@@ -126,7 +123,7 @@ const Update = () => {
 
 	const handleRemoveImage = async (e: any) => {
 		e.preventDefault();
-		const newImages = selectedDog?.image.filter((e) => e !== selectedImg);
+		const newImages = dog?.image.filter((e) => e !== selectedImg);
 		try {
 			await axios.patch(
 				`${URL}/dogs/${selectedDogId}`,
@@ -173,31 +170,6 @@ const Update = () => {
 		});
 	}, [submitted]);
 
-	const selectedDog = dogs?.find(
-		(e) => e._id.toLowerCase() === selectedDogId?.toLowerCase()
-	);
-
-	useEffect(() => {
-		if (selectedDog) {
-			setName(selectedDog.name || undefined);
-			setBreed(selectedDog.breed || undefined);
-			setGender(selectedDog.gender);
-			setHairType(selectedDog.hairType);
-			setRegNr(selectedDog.regNr);
-			setColor(selectedDog.color);
-			setIVDD(selectedDog.IVDD);
-			setBPH(selectedDog.BPH);
-			setEyes(selectedDog.eye);
-			setBirthDate(selectedDog.birthDate);
-			setDescription(selectedDog.description);
-			setTitles(selectedDog.titles as string[]);
-			setPedigree(selectedDog.pedigree);
-			setNickName(selectedDog.nickName);
-		}
-	}, [selectedDogId]);
-
-	console.log(dog);
-
 	return (
 		<div className="pt-[15vh] mb-[5rem]">
 			<div
@@ -209,11 +181,7 @@ const Update = () => {
 			>
 				<h2 className="w-fit m-auto font-cursive text-[4rem]">Uppdatera</h2>
 				<div className="flex w-full justify-center">
-					<form
-						className="flex flex-wrap justify-center"
-						onSubmit={onSubmit}
-						key={selectedDog && selectedDog._id}
-					>
+					<form className="flex flex-wrap justify-center" onSubmit={onSubmit}>
 						<div className="flex flex-col  justify-start my-[1rem] w-[40%]">
 							<label
 								htmlFor=""
@@ -470,6 +438,7 @@ const Update = () => {
 							/>
 							<button
 								className="mt-[1rem] text-[1.3rem] py-[0.5rem] cursor-pointer border-accent border-[1px] flex justify-center bg-accent text-white"
+								type="button"
 								onClick={() => {
 									setTitles((prevTitles) => [...prevTitles, newTitle]);
 									setNewTitle("");
@@ -478,23 +447,6 @@ const Update = () => {
 								Lägg till titel
 							</button>
 						</div>
-						{selectedDog && selectedDog.image.length > 0 && (
-							<div className="grid justify-start my-[1rem] w-full">
-								{selectedDog.image.map((e) => (
-									<img
-										key={e}
-										src={`${assetUrl}${e}`}
-										onClick={() => setSelectedImg(e)}
-										className={selectedImg === e ? "selectedImg" : ""}
-									/>
-								))}
-								{selectedImg && (
-									<button className="removeBtn" onClick={handleRemoveImage}>
-										Ta bort vald bild
-									</button>
-								)}
-							</div>
-						)}
 						<div className="flex flex-col justify-start my-[1rem] w-[80%]">
 							<label htmlFor="">Bild:</label>
 							<input
@@ -517,7 +469,11 @@ const Update = () => {
 							</div>
 							{selectedImg && (
 								<div className="flex justify-start">
-									<button className="bg-accent min-w-[200px] p-[1.5rem] text-grey">
+									<button
+										className="bg-accent min-w-[200px] p-[1.5rem] text-grey"
+										onClick={handleRemoveImage}
+										type="button"
+									>
 										Ta bort vald bild
 									</button>
 								</div>

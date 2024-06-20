@@ -14,6 +14,7 @@ const config: Config = {
 			grey: "#fff",
 			secondary: "#fff8d6",
 			detail: "#ff00dc",
+			error: "FF0000",
 		},
 		fontFamily: {
 			primary: ["Roboto", "sans-serif"],
