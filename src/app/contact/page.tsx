@@ -12,7 +12,7 @@ export default function Contact() {
 	const [message, setMessage] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(false);
 	const [success, setSuccess] = useState<boolean>(false);
-	const URL = process.env.SERVER_URL;
+	const URL = process.env.NEXT_PUBLIC_SERVER_URL;
 	const screenWidth = useWindowSize().width;
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

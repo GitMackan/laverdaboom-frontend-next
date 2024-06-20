@@ -37,8 +37,6 @@ const fadeInAnimationVariants = {
 	}),
 };
 
-console.log("test");
-
 const Navbar = () => {
 	const pathname = usePathname();
 	const [topScroll, setTopScroll] = useState(true);
@@ -245,6 +243,7 @@ const Navbar = () => {
 										<div className="flex flex-col">
 											{e.childLinks?.map((e, i) => (
 												<Link
+													key={i}
 													href={e.href}
 													onClick={() => setMenuOpen(false)}
 													className={`font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[.9rem] ${
