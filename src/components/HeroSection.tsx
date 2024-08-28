@@ -5,7 +5,7 @@ const HeroSection = () => {
 				background:
 					"url('https://laverdaboom.s3.eu-north-1.amazonaws.com/uploads/valpar_cover.jpeg'), rgb(150, 150, 150)",
 				backgroundSize: "cover",
-				backgroundAttachment: "fixed",
+				backgroundAttachment: "scroll",
 				backgroundPosition: "center",
 			}}
 			className="w-full h-[100vh] flex items-center bg-blend-multiply pt-[20rem]"
