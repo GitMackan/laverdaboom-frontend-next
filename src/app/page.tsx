@@ -1,11 +1,11 @@
 "use client";
 
 import { assetUrl } from "@/assets/constants";
+import AnimatedListItem from "@/components/AnimatedListItem";
 import HeroSection from "@/components/HeroSection";
 import Reveal from "@/components/Reveal";
-import Link from "next/link";
 import { useRef } from "react";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
+import { FaDog } from "react-icons/fa";
 
 export default function Home() {
 	const newsRef = useRef<HTMLDivElement>(null);
@@ -81,61 +81,118 @@ export default function Home() {
 				}}
 			>
 				<div className="py-[3rem] flex-[2] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
-					<div className="flex flex-col gap-[2rem] m-auto mt-[2rem] lg:ml-[2rem] w-full flex-1">
-						<Reveal>
-							<img
-								src={`${assetUrl}Sirocco.jpeg`}
-								className="min-w-[300px] w-full max-w-[400px] m-auto rounded-xl"
-								style={{
-									boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-								}}
-							/>
-						</Reveal>
-						<Reveal>
-							<img
-								src={`${assetUrl}bella1.jpg`}
-								className="min-w-[300px] w-full max-w-[400px] m-auto rounded-xl"
-								style={{
-									boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-								}}
-							/>
-						</Reveal>
-					</div>
-
-					<div className="p-[0.5rem] lg:p-[3rem] w-full flex flex-col justify-center items-center flex-[1]">
-						<h2 className="text-[3.5rem] lg:text-[4rem] font-cursive text-center color-accent mb-[2rem] border-accent border-b-[1px] w-fit m-auto">
-							Planerad valpkull
-						</h2>
-						<p className="font-extralight">
-							Nu är Bella och Sirocco parade. Om allt går som det ska väntar vi
-							valpar i mitten av Augusti.
-						</p>
-						<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
-							<BsGenderMale size={40} className={"gender-icon"} />
-							<p className="font-extralight">
-								<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
-									Sire:
-								</b>{" "}
-								SE U(V)CH SE VCH Pazir's Sirocco (Ögus Nappe x Koppargläntans
-								Debbi Fergusson) Öga UA IVDD0
-							</p>
-						</div>
-						<div className="flex justify-center items-center gap-[1rem] max-w-[600px] p-[1rem]">
-							<BsGenderFemale size={40} className={"gender-icon"} />
-							<p className="font-extralight">
-								<b className="text-[1.2rem] uppercase font-secondary font-normal text-accent">
-									Dam:
-								</b>{" "}
-								SE U(V)CH Bella Rose Marzenie Gabrysi (Figarro Rude x Secret
-								Garden Slim Extreme) Öga UA Bph-Genomförd
-							</p>
-						</div>
-						<Link
-							href={"/puppies"}
-							className="font-extralight underline underline-offset-4"
-						>
-							Köpa valp från oss? Titta hit.
-						</Link>
+					<div className="max-w-[1600px] flex flex-col w-full lg:w-[80%] m-auto">
+						<ul>
+							<AnimatedListItem index={0}>
+								<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
+									Aktuell valpkull
+								</h2>
+							</AnimatedListItem>
+						</ul>
+						<ul className="flex flex-col lg:flex-row justify-center items-center  pb-[3rem] mb-[3rem] gap-[3rem]">
+							<AnimatedListItem index={0} className="flex-1">
+								<div className="p-[3rem]">
+									<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
+										Bella Rose Marzenie Gabrysi x Pazir's Strocco
+									</h3>
+									<p className="my-[1rem] font-secondary">2024-08-12</p>
+									<ul className="list-none">
+										<li className="mb-[1rem]">
+											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+												<FaDog size={18} />
+												<div>
+													<p>Laverdabooms PS TAMINA</p>
+													{/* <p>SE17821/2021</p> */}
+												</div>
+											</div>
+										</li>
+									</ul>
+									<ul>
+										<li className="mb-[1rem]">
+											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+												<FaDog size={18} />
+												<div>
+													<p>Laverdabooms PS TESS</p>
+													{/* <p>SE17822/2021</p> */}
+												</div>
+											</div>
+										</li>
+									</ul>
+									<ul>
+										<li className="mb-[1rem]">
+											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+												<FaDog size={18} />
+												<div>
+													<p>Laverdabooms PS TINDRA</p>
+													{/* <p>SE17819/2021</p> */}
+												</div>
+											</div>
+										</li>
+									</ul>
+									<ul>
+										<li className="mb-[1rem]">
+											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+												<FaDog size={18} />
+												<div>
+													<p>Laverdabooms PS TOSCA</p>
+													{/* <p>SE17820/2021</p> */}
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</AnimatedListItem>
+							<div className="flex flex-col w-[100%] flex-1 gap-[3rem]">
+								<AnimatedListItem index={1} className="flex-1">
+									<div>
+										<div
+											className="grid gap-[0.5rem] w-full m-auto"
+											style={{ gridTemplateColumns: "1fr 1fr" }}
+										>
+											<img
+												src={`${assetUrl}bella-orange.jpg`}
+												className="w-full rounded-xl "
+												style={{
+													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+												}}
+											/>
+											<img
+												src={`${assetUrl}bella-gul.jpg`}
+												className="w-full rounded-xl "
+												style={{
+													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+												}}
+											/>
+											<img
+												src={`${assetUrl}bella-lila.jpg`}
+												className="w-full rounded-xl "
+												style={{
+													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+												}}
+											/>
+											<img
+												src={`${assetUrl}bella-red.jpg`}
+												className="w-full rounded-xl "
+												style={{
+													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+												}}
+											/>
+										</div>
+									</div>
+								</AnimatedListItem>
+								<AnimatedListItem index={1} className="flex-1">
+									<div>
+										<img
+											src={`${assetUrl}bella-with-puppies.jpg`}
+											className="w-full rounded-xl "
+											style={{
+												boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+											}}
+										/>
+									</div>
+								</AnimatedListItem>
+							</div>
+						</ul>
 					</div>
 				</div>
 			</div>

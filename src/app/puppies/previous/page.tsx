@@ -16,6 +16,98 @@ const PreviousPuppies = () => {
 						</AnimatedListItem>
 					</ul>
 
+					{/* <ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
+						<AnimatedListItem index={0} className="flex-1">
+							<div className="p-[3rem]">
+								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
+									Yxtanejdens Sarek x Laverdabooms Skrållan
+								</h3>
+								<p className="my-[1rem] font-secondary">2023-07-21</p>
+								<ul className="list-none">
+									<li className="mb-[1rem]">
+										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+											<FaDog size={18} />
+											<div>
+												<p>Laverdabooms Rosie Cotton </p>
+												<p>SE42367/2023</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul>
+									<li className="mb-[1rem]">
+										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+											<FaDog size={18} />
+											<div>
+												<p>Laverdabooms Legolas </p>
+												<p>SE42363/2023</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul>
+									<li className="mb-[1rem]">
+										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+											<FaDog size={18} />
+											<div>
+												<p>Laverdabooms Bilbo Bagger </p>
+												<p>SE42364/2023</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+								<ul>
+									<li className="mb-[1rem]">
+										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
+											<FaDog size={18} />
+											<div>
+												<p>Laverdabooms Galadriel </p>
+												<p>SE42366/2023</p>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</AnimatedListItem>
+						<AnimatedListItem index={1} className="flex-1">
+							<div>
+								<div
+									className="grid gap-[0.5rem] w-full m-auto"
+									style={{ gridTemplateColumns: "1fr 1fr" }}
+								>
+									<img
+										src={`${assetUrl}bella-orange.jpg`}
+										className="w-full rounded-xl "
+										style={{
+											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+										}}
+									/>
+									<img
+										src={`${assetUrl}bella-gul.jpg`}
+										className="w-full rounded-xl "
+										style={{
+											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+										}}
+									/>
+									<img
+										src={`${assetUrl}bella-lila.jpg`}
+										className="w-full rounded-xl "
+										style={{
+											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+										}}
+									/>
+									<img
+										src={`${assetUrl}bella-red.jpg`}
+										className="w-full rounded-xl "
+										style={{
+											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
+										}}
+									/>
+								</div>
+							</div>
+						</AnimatedListItem>
+					</ul> */}
+
 					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
 						<AnimatedListItem index={0} className="flex-1">
 							<div className="p-[3rem]">

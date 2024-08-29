@@ -17,6 +17,7 @@ const navItems = [
 			{ name: "Valpköp", href: "/puppies" },
 			{ name: "Tidigare valpar", href: "/puppies/previous" },
 			{ name: "Plannerade valpar", href: "/puppies/planned" },
+			{ name: "Aktuell valpkull", href: "/puppies/current" },
 		],
 	},
 	{ label: "Nyheter", href: "/news" },
@@ -167,6 +168,12 @@ const Navbar = () => {
 									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
 								>
 									Planerade valpar
+								</Link>
+								<Link
+									href="/puppies/current"
+									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
+								>
+									Aktuell valpkull
 								</Link>
 							</>
 						)}
