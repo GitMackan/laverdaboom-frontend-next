@@ -92,8 +92,11 @@ export default function Home() {
 						<ul className="flex flex-col lg:flex-row justify-center items-center  pb-[3rem] mb-[3rem] gap-[3rem]">
 							<AnimatedListItem index={0} className="flex-1">
 								<div className="p-[3rem]">
+									<p className="mb-[3rem] text-[1rem] font-secondary border-b-[0.1px] border-detail uppercase w-fit">
+										En tik i kullen söker ett hem
+									</p>
 									<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-										Bella Rose Marzenie Gabrysi x Pazir's Strocco
+										Bella Rose Marzenie Gabrysi x Pazir's Sirocco
 									</h3>
 									<p className="my-[1rem] font-secondary">2024-08-12</p>
 									<ul className="list-none">
