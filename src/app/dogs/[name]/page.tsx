@@ -185,34 +185,34 @@ export default async function SpecificDog({
 					{dog?.pedigree && dog.pedigree.length > 0 && (
 						<div className="w-full">
 							<div className="w-[90%] border-none py-[3rem] m-auto">
-								<h2 className="text-[2.2rem] font-secondary font-thin text-center mt-[1rem] mb-[3rem] text-accent">
+								<h2 className="text-[4rem] font-cursive font-thin text-center mt-[1rem] mb-[3rem] text-accent border-b-[.5px] border-detail w-fit m-auto">
 									Stamtavla
 								</h2>
 
 								<div className="flex w-full h-auto">
 									<div className="flex flex-1 flex-col">
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
 												boxShadow: `0px 0px 0.8px 0px ${colors.accent}`,
 											}}
 										>
-											<span className="font-thin text-[1rem] text-[#5a888a]">
+											<span className="font-thin text-[.9rem] lg:text-[1rem] text-[#5a888a]">
 												{dog?.pedigree[0].titles?.join(" ")}
 											</span>
 											<p>{dog.pedigree[0]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
 												boxShadow: `0px 0px 0.8px 0px ${colors.accent}`,
 											}}
 										>
-											<span className="font-thin text-[1rem] text-[#5a888a]">
+											<span className="font-thin text-[.9rem] lg:text-[1rem] text-[#5a888a]">
 												{dog?.pedigree[1]?.titles?.join(" ")}
 											</span>
 											<p>{dog.pedigree[1]?.name}</p>
@@ -220,7 +220,7 @@ export default async function SpecificDog({
 									</div>
 									<div className="flex flex-1 flex-col">
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -233,7 +233,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[2]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -246,7 +246,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[3]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -259,7 +259,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[4]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -274,7 +274,7 @@ export default async function SpecificDog({
 									</div>
 									<div className="flex flex-1 flex-col">
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -287,7 +287,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[6]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -300,7 +300,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[7]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -313,7 +313,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[8]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -326,7 +326,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[9]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -339,7 +339,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[10]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -352,7 +352,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[11]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
@@ -365,7 +365,7 @@ export default async function SpecificDog({
 											<p>{dog.pedigree[12]?.name}</p>
 										</div>
 										<div
-											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
+											className="flex flex-1 justify-center font-thin py-[1.5rem] px-[0.5rem] font-secondary text-[1rem] lg:text-[1.2rem] flex-col gap-[0.3rem] text-center text-accent"
 											style={{
 												background:
 													"linear-gradient(white, rgb(250, 237, 237))",
