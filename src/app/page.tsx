@@ -19,13 +19,13 @@ export default function Home() {
 						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
 				}}
 			>
-				<div id="news" className="pb-[8rem] ">
+				<div id="news" className="pb-[3.5rem] md:pb-[8rem] ">
 					<div
 						className="pt-[12rem] flex lg:px-[3rem] w-full gap-[5rem] flex-col lg:flex-row"
 						id="news"
 						ref={newsRef}
 					>
-						<div className="flex-1 ">
+						<div className="flex-1">
 							<div className="relative items-center flex justify-center">
 								<div
 									className="absolute w-[200px] h-[200px] opacity-[10%]"
@@ -45,7 +45,7 @@ export default function Home() {
 								</Reveal>
 							</div>
 							<Reveal>
-								<p className="tracking-[0.03rem] font-primary leading-[2rem] px-[3rem] font-light">
+								<p className="tracking-[0.03rem] font-primary leading-[2rem] px-[1.5rem] lg:px-[3rem] font-light">
 									Laverdabooms kennel är en liten kennel som föder upp trevliga
 									och sunda hundar i hemmamiljö. Kenneln registrerades 2015 och
 									2016 fick vi vår första kull med långhåriga Standardtaxar. Vi
@@ -74,22 +74,22 @@ export default function Home() {
 				</div>
 			</div>
 			<div
-				className="flex flex-col justify-center pb-[5rem]"
+				className="flex flex-col justify-center md:pb-[5rem]"
 				style={{
 					background:
 						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
 				}}
 			>
-				<div className="py-[3rem] flex-[2] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
+				<div className="py-[3rem] flex-[2] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[100%] lg:w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
 					<div className="max-w-[1600px] flex flex-col w-full lg:w-[80%] m-auto">
 						<ul>
 							<AnimatedListItem index={0}>
-								<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
+								<h2 className="text-center text-accent md:my-[5rem] font-cursive text-[4rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
 									Aktuell valpkull
 								</h2>
 							</AnimatedListItem>
 						</ul>
-						<ul className="flex flex-col lg:flex-row justify-center items-center  pb-[3rem] mb-[3rem] gap-[3rem]">
+						<ul className="flex flex-col lg:flex-row justify-center items-center  md:pb-[3rem] mb-[3rem] gap-[3rem]">
 							<AnimatedListItem index={0} className="flex-1">
 								<div className="p-[3rem]">
 									<p className="mb-[3rem] text-[1rem] font-secondary border-b-[0.1px] border-detail uppercase w-fit">

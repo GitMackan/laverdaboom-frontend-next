@@ -106,7 +106,7 @@ export default function Contact() {
 							Namn:
 						</label>
 						<input
-							className="h-[3rem] pl-[0.5rem] text-accent text-[1.4rem] border-accent border-[1px]"
+							className="h-[3rem] pl-[0.5rem] text-accent text-[1.4rem] border-b-[.5px] border-accent"
 							type="text"
 							value={name}
 							onChange={(e) => setName(e.target.value)}
@@ -117,7 +117,7 @@ export default function Contact() {
 							Email:
 						</label>
 						<input
-							className="h-[3rem] pl-[0.5rem] text-[1.4rem] text-accent border-accent border-[1px]"
+							className="h-[3rem] pl-[0.5rem] text-[1.4rem] text-accent border-b-[.5px] border-accent"
 							type="text"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
@@ -128,7 +128,7 @@ export default function Contact() {
 							Meddelande:
 						</label>
 						<textarea
-							className="h-[10rem] p-[0.5rem] text-[1.4rem] border-accent border-[1px]"
+							className="h-[10rem] p-[0.5rem] text-[1.4rem] border-b-[.5px] border-accent"
 							value={message}
 							onChange={(e) => setMessage(e.target.value)}
 						/>

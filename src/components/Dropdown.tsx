@@ -54,7 +54,7 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 				className="w-full border-solid border-b-dark border-b-[2px] bg-white p-[16px] font-secondary font-[1.2rem]"
 			>
 				<div className="flex items-center gap-[5px] w-full justify-between">
-					<p>{params.name || "Välj hund"}</p>
+					<p className="capitalize">{params.name || "Välj hund"}</p>
 					{isOpen ? <FaAngleUp /> : <FaAngleDown />}
 				</div>
 			</div>
