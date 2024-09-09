@@ -1,6 +1,7 @@
 import { assetUrl } from "@/assets/constants";
 import AnimatedListItem from "@/components/AnimatedListItem";
 import React from "react";
+import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaDog } from "react-icons/fa";
 
 const CurrentPuppies = () => {
@@ -20,10 +21,39 @@ const CurrentPuppies = () => {
 							<p className="mb-[3rem] text-[1rem] font-secondary border-b-[0.1px] border-detail uppercase w-fit">
 								En tik i kullen söker ett hem
 							</p>
-							<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-								Bella Rose Marzenie Gabrysi x Pazir's Sirocco
-							</h3>
-							<p className="my-[1rem] font-secondary">2024-08-12</p>
+							<div className="flex flex-col gap-[1.5rem]">
+								<div className="flex justify-stretch items-center gap-[1rem] border-b-[.5px] border-b-detail pb-[1.5rem]">
+									<BsGenderMale size={32} />
+									<div>
+										<p className="text-[#767171] font-secondary">SE U(V)CH</p>
+										<h3 className="font-secondary font-medium text-[1.5rem]">
+											Bella Rose Marzenie Gabrysi
+										</h3>
+
+										<p className="text-[#767171] font-secondary">
+											Eye test - Clear
+										</p>
+										<p className="text-[#767171] font-secondary">CDDY/CDDY</p>
+									</div>
+								</div>
+								<div className="flex justify-stretch items-center gap-[1rem]">
+									<BsGenderFemale size={32} />
+									<div>
+										<p className="text-[#767171] font-secondary">
+											SE U(V)CH SE VCH
+										</p>
+										<h3 className="font-secondary font-medium text-[1.5rem]">
+											Pazir's Sirocco
+										</h3>
+
+										<p className="text-[#767171] font-secondary">
+											Eye test - Clear
+										</p>
+										<p className="text-[#767171] font-secondary">IVDD 0</p>
+									</div>
+								</div>
+							</div>
+							<p className="mb-[1.5rem] mt-[2rem] font-secondary">2024-08-12</p>
 							<ul className="list-none">
 								<li className="mb-[1rem]">
 									<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">

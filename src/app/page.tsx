@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import Reveal from "@/components/Reveal";
 import { useRef } from "react";
 import { FaDog } from "react-icons/fa";
+import { BsGenderFemale, BsGenderMale, BsHeart } from "react-icons/bs";
 
 export default function Home() {
 	const newsRef = useRef<HTMLDivElement>(null);
@@ -84,7 +85,7 @@ export default function Home() {
 					<div className="max-w-[1600px] flex flex-col w-full lg:w-[80%] m-auto">
 						<ul>
 							<AnimatedListItem index={0}>
-								<h2 className="text-center text-accent md:my-[5rem] font-cursive text-[4rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
+								<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
 									Aktuell valpkull
 								</h2>
 							</AnimatedListItem>
@@ -95,10 +96,44 @@ export default function Home() {
 									<p className="mb-[3rem] text-[1rem] font-secondary border-b-[0.1px] border-detail uppercase w-fit">
 										En tik i kullen söker ett hem
 									</p>
-									<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-										Bella Rose Marzenie Gabrysi x Pazir's Sirocco
-									</h3>
-									<p className="my-[1rem] font-secondary">2024-08-12</p>
+									<div className="flex flex-col gap-[1.5rem]">
+										<div className="flex justify-stretch items-center gap-[1rem] border-b-[.5px] border-b-detail pb-[1.5rem]">
+											<BsGenderMale size={32} />
+											<div>
+												<p className="text-[#767171] font-secondary">
+													SE U(V)CH
+												</p>
+												<h3 className="font-secondary font-medium text-[1.5rem]">
+													Bella Rose Marzenie Gabrysi
+												</h3>
+
+												<p className="text-[#767171] font-secondary">
+													Eye test - Clear
+												</p>
+												<p className="text-[#767171] font-secondary">
+													CDDY/CDDY
+												</p>
+											</div>
+										</div>
+										<div className="flex justify-stretch items-center gap-[1rem]">
+											<BsGenderFemale size={32} />
+											<div>
+												<p className="text-[#767171] font-secondary">
+													SE U(V)CH SE VCH
+												</p>
+												<h3 className="font-secondary font-medium text-[1.5rem]">
+													Pazir's Sirocco
+												</h3>
+
+												<p className="text-[#767171] font-secondary">
+													Eye test - Clear
+												</p>
+												<p className="text-[#767171] font-secondary">IVDD 0</p>
+											</div>
+										</div>
+									</div>
+
+									<p className="my-[1.5rem] font-secondary">2024-08-12</p>
 									<ul className="list-none">
 										<li className="mb-[1rem]">
 											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
