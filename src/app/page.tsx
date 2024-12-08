@@ -86,19 +86,16 @@ export default function Home() {
 						<ul>
 							<AnimatedListItem index={0}>
 								<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-									Aktuell valpkull
+									Vår senaste valpkull
 								</h2>
 							</AnimatedListItem>
 						</ul>
 						<ul className="flex flex-col lg:flex-row justify-center items-center  md:pb-[3rem] mb-[3rem] gap-[3rem]">
 							<AnimatedListItem index={0} className="flex-1">
 								<div className="p-[3rem]">
-									<p className="mb-[3rem] text-[1rem] font-secondary border-b-[0.1px] border-detail uppercase w-fit">
-										En tik i kullen söker ett hem
-									</p>
 									<div className="flex flex-col gap-[1.5rem]">
 										<div className="flex justify-stretch items-center gap-[1rem] border-b-[.5px] border-b-detail pb-[1.5rem]">
-											<BsGenderMale size={32} />
+											<BsGenderMale size={32} /> 
 											<div>
 												<p className="text-[#767171] font-secondary">
 													SE U(V)CH

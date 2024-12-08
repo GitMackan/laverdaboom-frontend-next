@@ -16,20 +16,20 @@ const PreviousPuppies = () => {
 						</AnimatedListItem>
 					</ul>
 
-					{/* <ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
+					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
 						<AnimatedListItem index={0} className="flex-1">
 							<div className="p-[3rem]">
 								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Yxtanejdens Sarek x Laverdabooms Skrållan
+									Pazir's Sirocco x Bella Rose Marzenie Gabrysi
 								</h3>
-								<p className="my-[1rem] font-secondary">2023-07-21</p>
+								<p className="my-[1rem] font-secondary">2024-08-12</p>
 								<ul className="list-none">
 									<li className="mb-[1rem]">
 										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
 											<FaDog size={18} />
 											<div>
-												<p>Laverdabooms Rosie Cotton </p>
-												<p>SE42367/2023</p>
+												<p>Laverdabooms PS TAMINA</p>
+												<p>SE40939/2024</p>
 											</div>
 										</div>
 									</li>
@@ -39,8 +39,8 @@ const PreviousPuppies = () => {
 										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
 											<FaDog size={18} />
 											<div>
-												<p>Laverdabooms Legolas </p>
-												<p>SE42363/2023</p>
+												<p>Laverdabooms PS TESS</p>
+												<p>SE40940/2024</p>
 											</div>
 										</div>
 									</li>
@@ -50,8 +50,8 @@ const PreviousPuppies = () => {
 										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
 											<FaDog size={18} />
 											<div>
-												<p>Laverdabooms Bilbo Bagger </p>
-												<p>SE42364/2023</p>
+												<p>Laverdabooms PS TINDRA</p>
+												<p>SE40941/2024</p>
 											</div>
 										</div>
 									</li>
@@ -61,8 +61,8 @@ const PreviousPuppies = () => {
 										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
 											<FaDog size={18} />
 											<div>
-												<p>Laverdabooms Galadriel </p>
-												<p>SE42366/2023</p>
+												<p>Laverdabooms PS TOSCA</p>
+												<p>SE40942/2024</p>
 											</div>
 										</div>
 									</li>
@@ -103,11 +103,13 @@ const PreviousPuppies = () => {
 											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
 										}}
 									/>
+									
 								</div>
 							</div>
 						</AnimatedListItem>
-					</ul> */}
+					</ul>
 
+			
 					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
 						<AnimatedListItem index={0} className="flex-1">
 							<div className="p-[3rem]">
