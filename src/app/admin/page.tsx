@@ -31,7 +31,7 @@ const Admin = () => {
     checkAuth();
   }, []);
 
-  if (typeof loading === "undefined" || !isLoggedIn)
+  if (typeof loading === "undefined" && !isLoggedIn)
     return (
       <div className="py-[15vh] min-h-[75vh] max-w-full flex justify-center items-center">
         <RiseLoader />
