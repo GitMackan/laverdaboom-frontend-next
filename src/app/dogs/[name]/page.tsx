@@ -12,16 +12,27 @@ export default async function SpecificDog({
 }) {
 	const URL = "https://laverdaboom-api.herokuapp.com";
 
-	const getDogs = await fetch(URL + "/dogs");
+	const getDogs = await fetch('http://localhost:8080/dogs', { method: 'GET', cache: 'no-store'});
 	const dogs: Dog[] = await getDogs.json();
 
-	const getDog = await fetch(URL + "/dogs/" + params.name);
+	console.log("dogs: ", dogs)
+	console.log("params: ", decodeURIComponent(params.name))
+
+	const id = dogs.find(e => e.nickname.toLowerCase() === decodeURIComponent(params.name).toLowerCase())?.id
+
+	console.log("id: ", id)
+
+	const getDog = await fetch('http://localhost:8080/dogs/' + id, { method: 'GET', cache: 'no-store' });
 	const dog: Dog = await getDog.json();
 
-	const images: any = dog?.image.map((e) => ({
+	console.log("dog: ", dog)
+
+	const images: any = dog?.image?.map((e) => ({
 		original: `${assetUrl}${e}`,
 		thumbnail: `${assetUrl}${e}`,
 	}));
+
+
 
 	return (
 		<div>
@@ -47,13 +58,13 @@ export default async function SpecificDog({
 									gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
 								}}
 							>
-								{dog?.regNr && (
+								{dog?.reg_nr && (
 									<li className="flex items-center gap-[10px] justify-start">
 										<div className="flex justify-center items-center gap-[1rem] py-[1rem] px-[3rem]">
 											<div>
 												<p className="text-[0.8rem] uppercase">Reg.nr:</p>
 												<p className="text-[20px] leading-[2rem]">
-													{dog.regNr}
+													{dog.reg_nr}
 												</p>
 											</div>
 										</div>
@@ -83,13 +94,13 @@ export default async function SpecificDog({
 										</div>
 									</li>
 								)}
-								{dog?.hairType && (
+								{dog?.hair_type && (
 									<li className="flex items-center gap-[10px] justify-start">
 										<div className="flex justify-center items-center gap-[1rem] py-[1rem] px-[3rem]">
 											<div>
 												<p className="text-[0.8rem] uppercase">Hårlag:</p>
 												<p className="text-[20px] leading-[2rem]">
-													{dog.hairType}
+													{dog.hair_type}
 												</p>
 											</div>
 										</div>
@@ -137,13 +148,13 @@ export default async function SpecificDog({
 										</div>
 									</li>
 								)}
-								{dog?.birthDate && (
+								{dog?.birth_date && (
 									<li className="flex items-center gap-[10px] justify-start">
 										<div className="flex justify-center items-center gap-[1rem] py-[1rem] px-[3rem]">
 											<div>
 												<p className="text-[0.8rem] uppercase">Födelsedatum:</p>
 												<p className="text-[20px] leading-[2rem]">
-													{dog.birthDate}
+													{dog.birth_date}
 												</p>
 											</div>
 										</div>
@@ -200,7 +211,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[.9rem] lg:text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[0].titles?.join(" ")}
+												{dog?.pedigree[0].titles}
 											</span>
 											<p>{dog.pedigree[0]?.name}</p>
 										</div>
@@ -213,7 +224,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[.9rem] lg:text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[1]?.titles?.join(" ")}
+												{dog?.pedigree[1]?.titles}
 											</span>
 											<p>{dog.pedigree[1]?.name}</p>
 										</div>
@@ -228,7 +239,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[2]?.titles?.join(" ")}
+												{dog?.pedigree[2]?.titles}
 											</span>
 											<p>{dog.pedigree[2]?.name}</p>
 										</div>
@@ -241,7 +252,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[3]?.titles?.join(" ")}
+												{dog?.pedigree[3]?.titles}
 											</span>
 											<p>{dog.pedigree[3]?.name}</p>
 										</div>
@@ -254,7 +265,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[4]?.titles?.join(" ")}
+												{dog?.pedigree[4]?.titles}
 											</span>
 											<p>{dog.pedigree[4]?.name}</p>
 										</div>
@@ -267,7 +278,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[5]?.titles?.join(" ")}
+												{dog?.pedigree[5]?.titles}
 											</span>
 											<p>{dog.pedigree[5]?.name}</p>
 										</div>
@@ -282,7 +293,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[6]?.titles?.join(" ")}
+												{dog?.pedigree[6]?.titles}
 											</span>
 											<p>{dog.pedigree[6]?.name}</p>
 										</div>
@@ -295,7 +306,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[7]?.titles?.join(" ")}
+												{dog?.pedigree[7]?.titles}
 											</span>
 											<p>{dog.pedigree[7]?.name}</p>
 										</div>
@@ -308,7 +319,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[8]?.titles?.join(" ")}
+												{dog?.pedigree[8]?.titles}
 											</span>
 											<p>{dog.pedigree[8]?.name}</p>
 										</div>
@@ -321,7 +332,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[9]?.titles?.join(" ")}
+												{dog?.pedigree[9]?.titles}
 											</span>
 											<p>{dog.pedigree[9]?.name}</p>
 										</div>
@@ -334,7 +345,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[10]?.titles?.join(" ")}
+												{dog?.pedigree[10]?.titles}
 											</span>
 											<p>{dog.pedigree[10]?.name}</p>
 										</div>
@@ -347,7 +358,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[11]?.titles?.join(" ")}
+												{dog?.pedigree[11]?.titles}
 											</span>
 											<p>{dog.pedigree[11]?.name}</p>
 										</div>
@@ -360,7 +371,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[12]?.titles?.join(" ")}
+												{dog?.pedigree[12]?.titles}
 											</span>
 											<p>{dog.pedigree[12]?.name}</p>
 										</div>
@@ -373,7 +384,7 @@ export default async function SpecificDog({
 											}}
 										>
 											<span className="font-thin text-[1rem] text-[#5a888a]">
-												{dog?.pedigree[13]?.titles?.join(" ")}
+												{dog?.pedigree[13]?.titles}
 											</span>
 											<p>{dog.pedigree[13]?.name}</p>
 										</div>

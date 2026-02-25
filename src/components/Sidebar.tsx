@@ -11,9 +11,9 @@ const Sidebar = ({ dogs }: SidebarProps) => {
 	const screenWidth = useWindowSize().width;
 	const maleDogs = dogs?.filter((e) => e.gender?.toLowerCase() === "hane");
 	const femaleDogs = dogs?.filter(
-		(e) => e.gender?.toLowerCase() === "tik" && e.angelDog !== "true"
+		(e) => e.gender?.toLowerCase() === "tik" && e.angel_dog !== "true"
 	);
-	const angelDogs = dogs?.filter((e) => e.angelDog?.toLowerCase() === "true");
+	const angelDogs = dogs?.filter((e) => e.angel_dog?.toLowerCase() === "true");
 
 	const generateSelectedDogName = (name: string): string => {
 		const characterMap = {
@@ -22,9 +22,8 @@ const Sidebar = ({ dogs }: SidebarProps) => {
 			ö: "o",
 		};
 
-		const sanitizedName = name
-			.toLowerCase()
-			.replace(/[åäö]/g, (match) => (characterMap as any)[match] || match);
+		const sanitizedName = name?.toLowerCase().replace(/[åäö]/g, (match) => (characterMap as any)[match] || match);
+
 
 		return sanitizedName;
 	};
@@ -43,12 +42,12 @@ const Sidebar = ({ dogs }: SidebarProps) => {
 					Tikar
 				</h3>
 				{femaleDogs?.map((e) => (
-					<li key={e._id} className="my-[0.5rem] font-secondary">
-						<Link href={`/dogs/${generateSelectedDogName(e.nickName)}`}>
+					<li key={e.id} className="my-[0.5rem] font-secondary">
+						<Link href={`/dogs/${e.nickname}`}>
 							<div className="flex items-center gap-[0.5rem]">
 								{/* <FiMinus size={10} /> */}
 								<p className="cursor-pointer font-[1.1rem] hover:underline">
-									{e.nickName}
+									{e.nickname}
 								</p>
 							</div>
 						</Link>
@@ -60,12 +59,12 @@ const Sidebar = ({ dogs }: SidebarProps) => {
 					Hanar
 				</h3>
 				{maleDogs?.map((e) => (
-					<li key={e._id} className="my-[0.5rem] font-secondary">
-						<Link href={`/dogs/${generateSelectedDogName(e.nickName)}`}>
+					<li key={e.id} className="my-[0.5rem] font-secondary">
+						<Link href={`/dogs/${generateSelectedDogName(e.nickname)}`}>
 							<div className="flex items-center gap-[0.5rem]">
 								{/* <FiMinus size={10} /> */}
 								<p className="cursor-pointer font-[1.1rem] hover:underline">
-									{e.nickName}
+									{e.nickname}
 								</p>
 							</div>
 						</Link>
@@ -77,12 +76,12 @@ const Sidebar = ({ dogs }: SidebarProps) => {
 					Änglahundar
 				</h3>
 				{angelDogs?.map((e) => (
-					<li key={e._id} className="my-[0.5rem] font-secondary">
-						<Link href={`/dogs/${generateSelectedDogName(e.nickName)}`}>
+					<li key={e.id} className="my-[0.5rem] font-secondary">
+						<Link href={`/dogs/${e.nickname}`}>
 							<div className="flex items-center gap-[0.5rem]">
 								{/* <FiMinus size={10} /> */}
 								<p className="cursor-pointer font-[1.1rem] hover:underline">
-									{e.nickName}
+									{e.nickname}
 								</p>
 							</div>
 						</Link>

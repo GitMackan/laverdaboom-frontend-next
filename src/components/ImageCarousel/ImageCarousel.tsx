@@ -15,6 +15,8 @@ export default function ImageCarousel({ dog }: ImageCarouselProps) {
 		original: `${assetUrl}${e}`,
 		thumbnail: `${assetUrl}${e}`,
 	}));
+
+	console.log("images: ", images)
 	return (
 		<div>
 			<ImageGallery

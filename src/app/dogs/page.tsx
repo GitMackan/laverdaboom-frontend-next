@@ -5,49 +5,49 @@ import AnimatedListItem from "@/components/AnimatedListItem";
 
 export type Parent = {
 	name: string;
-	titles: string[];
+	titles: string;
 };
 
 export type Dog = {
-	_id: string;
+	id: number;
 	name: string;
 	breed?: string;
 	gender?: string;
 	size?: string;
-	hairType?: string;
-	regNr?: string;
+	hair_type?: string;
+	reg_nr?: string;
 	color?: string;
 	IVDD?: string;
-	nickName: string;
+	nickname: string;
 	BPH?: string;
 	eye?: string;
-	birthDate?: string;
+	birth_date?: string;
 	description?: string;
-	angelDog?: string;
+	angel_dog?: string;
 	titles?: string[];
 	image: string[];
 	pedigree: Parent[];
 };
 
 export default async function Dogs() {
-	const URL = "https://laverdaboom-api.herokuapp.com";
+	const URL = "http://localhost:8080";
 
-	const res = await fetch(`${URL}/dogs`);
+	const res = await fetch(`http://localhost:8080/dogs`, { method: 'GET', cache: 'no-store' });
+	console.log("res: ", res)
 	const dogs: Dog[] = await res.json();
 
-	const generateSelectedDogName = (name: string): string => {
+
+	/* const generateSelectedDogName = (name: string): string => {
 		const characterMap = {
 			å: "a",
 			ä: "a",
 			ö: "o",
 		};
 
-		const sanitizedName = name
-			.toLowerCase()
-			.replace(/[åäö]/g, (match) => (characterMap as any)[match] || match);
+		const sanitizedName = name?.toLowerCase().replace(/[åäö]/g, (match) => (characterMap as any)[match] || match);
 
 		return sanitizedName;
-	};
+	}; */
 
 	return (
 		<div>
@@ -58,26 +58,26 @@ export default async function Dogs() {
 						{dogs
 							?.filter(
 								(e) =>
-									e.breed === "Normalstor Tax" &&
+									e.breed === "Tax" &&
 									e.gender === "Tik" &&
-									e.angelDog !== "true"
+									e.angel_dog !== "true"
 							)
 							.map((e, index) => (
 								<ul
-									key={e._id}
+									key={e.id}
 									className="flex flex-col text-center gap-[1rem] overflow-hidden"
 								>
 									<AnimatedListItem index={index}>
 										<h3 className="text-[1.1rem] font-secondary font-thin mb-[.5rem]">
-											{e.name} {e.nickName === "Astrid" && ` - ${e.nickName}`}
+											{e.name} {e.nickname === "Astrid" && ` - ${e.nickname}`}
 										</h3>
 										<Link
-											href={`/dogs/${generateSelectedDogName(e.nickName)}`}
+											href={`/dogs/${e.nickname}`}
 											className="m-auto"
 										>
 											<div className="w-full overflow-hidden">
 												<img
-													src={`${assetUrl}${e.image[0]}`}
+													src={`${assetUrl}${e?.image?.[0]}`}
 													className="max-h-[100%] max-w-full cursor-pointer rounded-xl"
 												/>
 											</div>
@@ -88,13 +88,13 @@ export default async function Dogs() {
 						{dogs
 							?.filter(
 								(e) =>
-									e.breed === "Normalstor Tax" &&
+									e.breed === "Tax" &&
 									e.gender === "Hane" &&
-									e.angelDog !== "true"
+									e.angel_dog !== "true"
 							)
 							.map((e, index) => (
 								<ul
-									key={e._id}
+									key={e.id}
 									className="flex flex-col text-center gap-[1rem] overflow-hidden"
 								>
 									<AnimatedListItem index={index}>
@@ -102,7 +102,7 @@ export default async function Dogs() {
 											{e.name}
 										</h3>
 										<Link
-											href={`/dogs/${generateSelectedDogName(e.nickName)}`}
+											href={`/dogs/${e.nickname}`}
 											className="m-auto"
 										>
 											<div className="w-full overflow-hidden">
