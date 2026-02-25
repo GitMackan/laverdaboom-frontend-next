@@ -127,7 +127,9 @@ const Update = () => {
       console.log(error);
       setSelectedImg(undefined);
       setImage(undefined);
-      toast((error as any).response.data.message || 'Whops, nått gick fel!', { type: "error" });
+      toast((error as any).response.data.message || "Whops, nått gick fel!", {
+        type: "error",
+      });
     }
   };
 
@@ -182,12 +184,14 @@ const Update = () => {
 
   return (
     <div className="pt-[15vh] mb-[5rem]">
-		<div className="px-[6rem] py-[1rem] flex gap-[1rem] items-center">
+      <div className="px-[6rem] py-[1rem] flex gap-[1rem] items-center">
         <Link href="/admin">Admin</Link>
         <FaArrowRight />
         <Link href="/admin/update">Update</Link>
-		<FaArrowRight />
-        <Link href="/admin/update" className="underline">{dog?.nickname}</Link>
+        <FaArrowRight />
+        <Link href="/admin/update" className="underline">
+          {dog?.nickname}
+        </Link>
       </div>
       <div
         className="max-w-[90%] p-[3rem] m-auto mt-[0rem] border-accent border-[3px] w-full flex flex-col items-start"
@@ -417,7 +421,7 @@ const Update = () => {
                 onChange={(e) => setNewParentName(e.target.value)}
               />
 
-              <button
+              {/* <button
                 className="mt-[1rem] text-[1.3rem] py-[0.5rem] cursor-pointer border-accent border-[1px] flex justify-center bg-accent text-white"
                 onClick={() => {
                   setPedigree((prevState) => [
@@ -428,7 +432,7 @@ const Update = () => {
                 }}
               >
                 Lägg till förälder
-              </button>
+              </button> */}
             </div>
             <div className="flex flex-col  justify-start my-[1rem] w-[40%]">
               <label htmlFor="" className="text-[1.5rem] my-[1rem]">

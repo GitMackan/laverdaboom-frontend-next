@@ -72,16 +72,16 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 						</p>
 					</li>
 					{options
-						?.filter((e) => e.gender?.toLowerCase() === "tik" && !e.angelDog)
+						?.filter((e) => e.gender?.toLowerCase() === "tik" && !e.angel_dog)
 						.map((dog) => (
 							<li
 								id={dog.name}
 								className="cursor-pointer bg-white font-secondary] hover:bg-[#eff4f4]"
-								key={dog._id}
+								key={dog.id}
 							>
 								<div>
 									<Link
-										href={`/dogs/${dog.nickName}`}
+										href={`/dogs/${dog.nickname}`}
 										className="no-underline text-accent"
 									>
 										<p className="font-[1.2rem] p-[1rem]">{dog?.name}</p>
@@ -95,15 +95,15 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 						</p>
 					</li>
 					{options
-						?.filter((e) => e.gender?.toLowerCase() === "hane" && !e.angelDog)
+						?.filter((e) => e.gender?.toLowerCase() === "hane" && !e.angel_dog)
 						.map((dog) => (
 							<li
 								id={dog.name}
 								className="cursor-pointer bg-white font-secondary] hover:bg-[#e8f1f2]"
-								key={dog._id}
+								key={dog.id}
 							>
 								<div>
-									<Link href={`/dogs/${dog.nickName}`}>
+									<Link href={`/dogs/${dog.nickname}`}>
 										<p className="font-[1.2rem] p-[1rem]">{dog?.name}</p>
 									</Link>
 								</div>
@@ -115,15 +115,15 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
 						</p>
 					</li>
 					{options
-						?.filter((e) => e.angelDog)
+						?.filter((e) => e.angel_dog)
 						.map((dog) => (
 							<li
 								id={dog.name}
 								className="cursor-pointer bg-white font-secondary] hover:bg-[#e8f1f2]"
-								key={dog._id}
+								key={dog.id}
 							>
 								<div>
-									<Link href={`/dogs/${dog.nickName}`}>
+									<Link href={`/dogs/${dog.nickname}`}>
 										<p className="font-[1.2rem] p-[1rem]">{dog?.name}</p>
 									</Link>
 								</div>
