@@ -10,9 +10,9 @@ export default async function SpecificDog({
 }: {
 	params: { name: string };
 }) {
-	const URL = "https://laverdaboom-api.herokuapp.com";
+	const URL = process.env.NEXT_PUBLIC_SERVER_URL
 
-	const getDogs = await fetch('http://localhost:8080/dogs', { method: 'GET', cache: 'no-store'});
+	const getDogs = await fetch(URL + '/dogs', { method: 'GET', cache: 'no-store'});
 	const dogs: Dog[] = await getDogs.json();
 
 	console.log("dogs: ", dogs)
@@ -22,7 +22,7 @@ export default async function SpecificDog({
 
 	console.log("id: ", id)
 
-	const getDog = await fetch('http://localhost:8080/dogs/' + id, { method: 'GET', cache: 'no-store' });
+	const getDog = await fetch(URL + '/dogs/' + id, { method: 'GET', cache: 'no-store' });
 	const dog: Dog = await getDog.json();
 
 	console.log("dog: ", dog)

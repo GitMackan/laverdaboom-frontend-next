@@ -30,24 +30,12 @@ export type Dog = {
 };
 
 export default async function Dogs() {
-	const URL = "http://localhost:8080";
+	const URL = process.env.NEXT_PUBLIC_SERVER_URL
 
-	const res = await fetch(`http://localhost:8080/dogs`, { method: 'GET', cache: 'no-store' });
+	const res = await fetch(URL + '/dogs', { method: 'GET', cache: 'no-store' });
 	console.log("res: ", res)
 	const dogs: Dog[] = await res.json();
 
-
-	/* const generateSelectedDogName = (name: string): string => {
-		const characterMap = {
-			å: "a",
-			ä: "a",
-			ö: "o",
-		};
-
-		const sanitizedName = name?.toLowerCase().replace(/[åäö]/g, (match) => (characterMap as any)[match] || match);
-
-		return sanitizedName;
-	}; */
 
 	return (
 		<div>
