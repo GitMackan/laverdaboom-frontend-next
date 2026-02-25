@@ -52,8 +52,6 @@ const News = () => {
     setCurrentVideo(index);
   };
 
-  const test = process.env.NEXT_PUBLIC_TEST;
-
   return (
     <div
       className="pt-[15vh]"
