@@ -1,5 +1,6 @@
 "use client";
 
+import ErrorModal from "@/components/ErrorModal";
 import SucessModal from "@/components/SuccessModal";
 import { useWindowSize } from "@/utils/useWindowSize";
 import axios from "axios";
@@ -12,6 +13,7 @@ export default function Contact() {
 	const [message, setMessage] = useState<string>("");
 	const [loading, setLoading] = useState<boolean>(false);
 	const [success, setSuccess] = useState<boolean>(false);
+	const [error, setError] = useState<string |null>(null)
 	const URL = process.env.NEXT_PUBLIC_SERVER_URL;
 	const screenWidth = useWindowSize().width;
 
@@ -29,11 +31,13 @@ export default function Contact() {
 			setName("");
 			setEmail("");
 			setMessage("");
+			setSuccess(true);
 		} catch (error) {
 			console.error("Failed.", error);
+			setError('Tyvärr kunde vi inte skicka ditt meddelande just nu. Vänligen försök igen om en stund.')
 		}
 		setLoading(false);
-		setSuccess(true);
+		
 	};
 
 	useEffect(() => {
@@ -92,7 +96,7 @@ export default function Contact() {
 								724 84 Västerås
 							</li>
 							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								rosajohansson@hotmail..se
+								rosajohansson@hotmail.se
 							</li>
 							<li className="text-accent text-left mb-[0.3rem] font-thin">
 								073-947 98 79
@@ -152,6 +156,14 @@ export default function Contact() {
 						onClose={() => setSuccess(false)}
 						title="Tack för ditt meddelande!"
 						message="Vi svarar dig så fort vi kan!"
+					/>
+				)}
+				{error && (
+					<ErrorModal
+						isOpen={!!error}
+						onClose={() => setError(null)}
+						title="Ajdå!"
+						message={error}
 					/>
 				)}
 			</div>

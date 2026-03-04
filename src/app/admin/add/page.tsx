@@ -64,7 +64,6 @@ const AddNew = () => {
           withCredentials: true,
         },
       );
-      console.log("kom hit");
       toast("Hund tillagd!", { type: "success" });
     } catch (error) {
       toast((error as any)?.response?.data?.message, { type: "error" });
@@ -74,10 +73,6 @@ const AddNew = () => {
 
   return (
     <div className="pt-[25vh] mb-[5rem]">
-      <div className="px-[6rem] py-[1rem] flex gap-[1rem] items-center">
-        <Link href="/admin">Admin</Link>
-        <FaArrowRight />
-      </div>
       <div
         className="max-w-[800px] p-[3rem] m-auto mt-[0rem] border-accent border-[3px] w-full flex flex-col items-start"
         style={{

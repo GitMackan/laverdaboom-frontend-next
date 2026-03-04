@@ -46,6 +46,8 @@ const Update = () => {
 
   const params = useParams();
 
+  console.log("params: ", params)
+
   const handleImageChange = (event: any) => {
     setImage(event.target.files[0]);
   };
@@ -56,7 +58,7 @@ const Update = () => {
   console.log("params: ", params);
 
   const getDog = async () => {
-    await axios.get(`${URL}/dogs/${params.name}`).then((response) => {
+    await axios.get(`${URL}/dogs/${params.id}`).then((response) => {
       setDog(response.data);
     });
   };
@@ -159,9 +161,6 @@ const Update = () => {
           nickName: nickName && nickName,
         },
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
           withCredentials: true,
         },
       );
@@ -182,17 +181,10 @@ const Update = () => {
     });
   }, [submitted]);
 
+  console.log("pedigree: ", pedigree)
+
   return (
     <div className="pt-[15vh] mb-[5rem]">
-      <div className="px-[6rem] py-[1rem] flex gap-[1rem] items-center">
-        <Link href="/admin">Admin</Link>
-        <FaArrowRight />
-        <Link href="/admin/update">Update</Link>
-        <FaArrowRight />
-        <Link href="/admin/update" className="underline">
-          {dog?.nickname}
-        </Link>
-      </div>
       <div
         className="max-w-[90%] p-[3rem] m-auto mt-[0rem] border-accent border-[3px] w-full flex flex-col items-start"
         style={{

@@ -1,15 +1,30 @@
 "use client";
 
-import Login from "@/components/Login";
-import { createBrowserClient } from "@supabase/ssr";
-import Link from "next/link";
-import router from "next/router";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { RiseLoader } from "react-spinners";
+import { Dog } from "@/app/dogs/page";
+import { assetUrl } from "@/assets/constants";
+import Link from "next/link";
+import AnimatedListItem from "@/components/AnimatedListItem";
+import { createBrowserClient } from "@supabase/ssr";
+import { useRouter } from "next/navigation";
+import { FaArrowRight } from "react-icons/fa";
+import { IoAddCircleOutline } from "react-icons/io5";
+
+
+export type Parent = {
+  name: string;
+  titles: string;
+};
+
+export type Pedigree = Parent;
 
 const Admin = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | undefined>(false);
-  const [loading, setLoading] = useState<boolean | undefined>(undefined);
+  const router = useRouter();
+  const [dogs, setDogs] = useState<Dog[] | undefined>();
+  const URL = process.env.NEXT_PUBLIC_SERVER_URL;
+
+  axios.defaults.withCredentials = true;
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,49 +33,53 @@ const Admin = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      setLoading(true);
       const {
         data: { user },
       } = await supabase.auth.getUser();
       console.log("user: ", user);
-      if (!user) setIsLoggedIn(false);
-      else setIsLoggedIn(true);
-
-	  setLoading(false)
+      if (!user) router.push("/admin");
     };
     checkAuth();
   }, []);
 
-  if (typeof loading === "undefined" && !isLoggedIn)
-    return (
-      <div className="py-[15vh] min-h-[75vh] max-w-full flex justify-center items-center">
-        <RiseLoader />
-      </div>
-    );
+  useEffect(() => {
+    axios.get(`${URL}/dogs`).then((response) => {
+      setDogs(response.data);
+    });
+  }, []);
 
   return (
-    <div className="py-[15vh] min-h-[75vh] max-w-full">
-      {isLoggedIn ? (
-        <div className="w-full flex max-w-[960px] justify-between m-auto mt-[3rem] flex-col gap-[3rem]">
-          <Link
-            href="/admin/add"
-            className="border-accent border-b-[1px] pb-[.4rem] text-[1.2rem] cursor-pointer w-[200px]"
-          >
-            Lägg till hund
-          </Link>
-          <Link
-            href="/admin/update"
-            className="border-accent border-b-[1px] pb-[.4rem] text-[1.2rem] cursor-pointer w-[200px]"
-          >
-            Uppdatera hund
-          </Link>
-          <div className="border-accent border-b-[1px] pb-[.4rem] text-[1.2rem] cursor-pointer w-[200px]">
-            Ta bort hund
+    <div className="pt-[15vh]">
+      <div className="mt-[3rem] w-[80%] m-auto">
+        <div className="flex items-center gap-[.6rem] border border-black w-fit justify-self-end p-[.6rem] mr-[2rem] rounded-md cursor-pointer hover:bg-[#ccc]" onClick={() => router.push('/admin/add')}>
+          <IoAddCircleOutline size={24} />
+          <p className="font-primary uppercase font-normal text-[.8rem]">Lägg till hund</p>
+        </div>
+        <div className="w-full">
+          <div className="p-[2rem] grid gap-y-[3rem] gap-x-[3rem] w-full grid-cols-small lg:grid-cols-large">
+            {dogs?.map((e, index) => (
+              <ul
+                key={e.id}
+                className="flex flex-col text-center gap-[1rem] overflow-hidden"
+              >
+                <AnimatedListItem index={index}>
+                  <h3 className="text-[1.1rem] font-secondary font-thin mb-[.5rem]">
+                    {e.name} {e.nickname === "Astrid" && ` - ${e.nickname}`}
+                  </h3>
+                  <Link href={`/admin/${e.id}`} className="m-auto">
+                    <div className="w-full overflow-hidden">
+                      <img
+                        src={`${assetUrl}${e.image[0]}`}
+                        className="max-h-[100%] max-w-full cursor-pointer rounded-xl"
+                      />
+                    </div>
+                  </Link>
+                </AnimatedListItem>
+              </ul>
+            ))}
           </div>
         </div>
-      ) : (
-        <Login setIsLoggedIn={setIsLoggedIn} />
-      )}
+      </div>
     </div>
   );
 };
