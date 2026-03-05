@@ -17,7 +17,7 @@ export type Dog = {
 	hair_type?: string;
 	reg_nr?: string;
 	color?: string;
-	IVDD?: string;
+	ivdd?: string;
 	nickname: string;
 	BPH?: string;
 	eye?: string;
@@ -33,7 +33,6 @@ export default async function Dogs() {
 	const URL = process.env.NEXT_PUBLIC_SERVER_URL
 
 	const res = await fetch(URL + '/dogs', { method: 'GET', cache: 'no-store' });
-	console.log("res: ", res)
 	const dogs: Dog[] = await res.json();
 
 

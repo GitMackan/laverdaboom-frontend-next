@@ -11,6 +11,7 @@ import { useParams } from "next/navigation";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import { supabase } from "@/lib/supabase/supabase";
 
 const Update = () => {
   const [dog, setDog] = useState<Dog>();
@@ -46,16 +47,11 @@ const Update = () => {
 
   const params = useParams();
 
-  console.log("params: ", params)
-
   const handleImageChange = (event: any) => {
     setImage(event.target.files[0]);
   };
 
   axios.defaults.withCredentials = true;
-
-  console.log("URL : ", URL);
-  console.log("params: ", params);
 
   const getDog = async () => {
     await axios.get(`${URL}/dogs/${params.id}`).then((response) => {
@@ -67,8 +63,6 @@ const Update = () => {
     getDog();
   }, []);
 
-  console.log("dog: ", dog);
-
   useEffect(() => {
     if (dog) {
       setName(dog.name || undefined);
@@ -77,7 +71,7 @@ const Update = () => {
       setHairType(dog.hair_type);
       setRegNr(dog.reg_nr);
       setColor(dog.color);
-      setIVDD(dog.IVDD);
+      setIVDD(dog.ivdd);
       setBPH(dog.BPH);
       setEyes(dog.eye);
       setBirthDate(dog.birth_date);
@@ -89,8 +83,17 @@ const Update = () => {
     }
   }, [dog]);
 
+  console.log("image: ", image)
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
+
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    console.log("session: ", session)
+
     try {
       await axios.put(
         `${URL}/dogs/${dog?.id}`,
@@ -101,7 +104,7 @@ const Update = () => {
           hairType: hairType && hairType,
           regNr: regNr && regNr,
           color: color && color,
-          IVDD: IVDD && IVDD,
+          ivdd: IVDD && IVDD,
           BPH: BPH && BPH,
           eye: eyes && eyes,
           birthDate: birthDate && birthDate,
@@ -116,6 +119,7 @@ const Update = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${session?.access_token}`,
           },
           withCredentials: true,
         },
@@ -148,8 +152,8 @@ const Update = () => {
           hairType: hairType && hairType,
           regNr: regNr && regNr,
           color: color && color,
-          IVDD: IVDD && IVDD,
-          BPH: BPH && BPH,
+          ivdd: IVDD && IVDD,
+          bph: BPH && BPH,
           eyes: eyes && eyes,
           birthDate: birthDate && birthDate,
           description: description && description,
@@ -181,7 +185,7 @@ const Update = () => {
     });
   }, [submitted]);
 
-  console.log("pedigree: ", pedigree)
+  console.log("hairType: ", hairType)
 
   return (
     <div className="pt-[15vh] mb-[5rem]">

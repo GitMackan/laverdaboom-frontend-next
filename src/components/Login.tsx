@@ -1,19 +1,15 @@
 "use client";
 
+import { supabase } from "@/lib/supabase/supabase";
 import { createBrowserClient } from "@supabase/ssr";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const Login = ({ setIsLoggedIn }: LoginProps) => {
+const Login = () => {
   const [username, setUsername] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
   const [error, setError] = useState(false);
-  const navigate = useRouter()
-
-  const supabase = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-);
+  const navigate = useRouter();
 
   const login = async () => {
     const { error } = await supabase.auth.signInWithPassword({
@@ -21,15 +17,12 @@ const Login = ({ setIsLoggedIn }: LoginProps) => {
       password: password!,
     });
 
-	console.log("error: ", error)
-
     if (error) {
       setError(true);
       return;
     }
 
-	console.log("japp")
-    setIsLoggedIn(true);
+    navigate.push('/admin')
   };
 
   return (

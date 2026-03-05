@@ -22,8 +22,9 @@ const PlannedPuppies = () => {
 					</AnimatedListItem>
 					<AnimatedListItem index={0}>
 						<p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em] w-fit m-auto">
-							För tillfället har vi inga planerade valpkullar.
+							Vi planerar att para Knopa sommaren 2026. Vi återkommer inom kort med mer information.
 						</p>
+						<img src={`${assetUrl}knopa.jpg`} alt="" className="max-h-[100%] max-w-[400px] cursor-pointer rounded-xl m-auto" />
 					</AnimatedListItem>
 				</ul>
 			</div>

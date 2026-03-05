@@ -1,5 +1,6 @@
 "use client";
 
+import { supabase } from "@/lib/supabase/supabase";
 import axios, { AxiosError } from "axios";
 import Link from "next/link";
 import React, { useRef, useState } from "react";
@@ -32,13 +33,16 @@ const AddNew = () => {
     setDisplayImage(URL.createObjectURL(event.target.files[0]));
   };
 
-  console.log("serverURL: ", serverURL);
-
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    console.log("session: ", session)
+
     try {
-      console.log("japp");
       await axios.post(
         `${serverURL}/dogs`,
         {
@@ -48,7 +52,7 @@ const AddNew = () => {
           hair_type: hairType && hairType,
           reg_nr: regNr && regNr,
           color: color && color,
-          IVDD: IVDD && IVDD,
+          ivdd: IVDD && IVDD,
           BPH: BPH && BPH,
           eyes: eyes && eyes,
           birth_date: birthDate && birthDate,
@@ -59,7 +63,7 @@ const AddNew = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data",
-            // Cookie: cookie,
+            Authorization: `Bearer ${session?.access_token}`,
           },
           withCredentials: true,
         },

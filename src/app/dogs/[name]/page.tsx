@@ -15,17 +15,10 @@ export default async function SpecificDog({
 	const getDogs = await fetch(URL + '/dogs', { method: 'GET', cache: 'no-store'});
 	const dogs: Dog[] = await getDogs.json();
 
-	console.log("dogs: ", dogs)
-	console.log("params: ", decodeURIComponent(params.name))
-
 	const id = dogs.find(e => e.nickname.toLowerCase() === decodeURIComponent(params.name).toLowerCase())?.id
-
-	console.log("id: ", id)
 
 	const getDog = await fetch(URL + '/dogs/' + id, { method: 'GET', cache: 'no-store' });
 	const dog: Dog = await getDog.json();
-
-	console.log("dog: ", dog)
 
 	const images: any = dog?.image?.map((e) => ({
 		original: `${assetUrl}${e}`,
@@ -118,12 +111,12 @@ export default async function SpecificDog({
 										</div>
 									</li>
 								)}
-								{dog?.IVDD && (
+								{dog?.ivdd && (
 									<li className="flex items-center gap-[10px] justify-start">
 										<div className="flex justify-center items-center gap-[1rem] py-[1rem] px-[3rem]">
 											<div>
 												<p className="text-[0.8rem] uppercase">Ivdd:</p>
-												<p className="text-[20px] leading-[2rem]">{dog.IVDD}</p>
+												<p className="text-[20px] leading-[2rem]">{dog.ivdd}</p>
 											</div>
 										</div>
 									</li>

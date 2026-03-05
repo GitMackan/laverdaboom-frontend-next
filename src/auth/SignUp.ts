@@ -8,7 +8,5 @@ const signUp = async (email: string, password: string) => {
 
   if (error) {
     console.error(error)
-  } else {
-    console.log("User created:", data)
-  }
+  } 
 }

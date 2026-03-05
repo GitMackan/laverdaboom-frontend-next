@@ -8,7 +8,5 @@ const signIn = async (email: string, password: string) => {
 
   if (error) {
     console.error(error)
-  } else {
-    console.log("Logged in:", data)
-  }
+  } 
 }
