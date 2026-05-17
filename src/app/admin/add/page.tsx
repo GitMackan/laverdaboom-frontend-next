@@ -1,65 +1,57 @@
 "use client";
 
 import { supabase } from "@/lib/supabase/supabase";
-import axios, { AxiosError } from "axios";
-import Link from "next/link";
-import React, { useRef, useState } from "react";
+import { Database } from "@/types/supabase";
+import axios from "axios";
+import Image from "next/image";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
-import { FaArrowRight } from "react-icons/fa";
 import { toast } from "react-toastify";
 
+type Dog = Database['public']['Tables']['dogs']['Row']
+
+const INITIAL_STATE: Partial<Dog> = {
+  name: "",
+  nickname: "",
+  breed: null,
+  gender: null,
+  hair_type: null,
+  reg_nr: null,
+  color: null,
+  ivdd: null,
+  bph: null,
+  eye: null,
+  birth_date: null,
+  description: null,
+};
+
 const AddNew = () => {
-  const [name, setName] = useState<string | undefined>();
-  const [nickname, setNickname] = useState<string | undefined>();
-  const [breed, setBreed] = useState<string | undefined>();
-  const [gender, setGender] = useState<string | undefined>();
-  const [hairType, setHairType] = useState<string | undefined>();
-  const [regNr, setRegNr] = useState<string | undefined>();
-  const [color, setColor] = useState<string | undefined>();
-  const [IVDD, setIVDD] = useState<string | undefined>();
-  const [BPH, setBPH] = useState<string | undefined>();
-  const [eyes, setEyes] = useState<string | undefined>();
-  const [birthDate, setBirthDate] = useState<string | undefined>();
-  const [description, setDescription] = useState<string | undefined>();
-  const [cookies, setCookie] = useCookies(["LAVERDABOOM-AUTH"]);
-  const [image, setImage] = useState<any>();
-  const [displayImage, setDisplayImage] = useState<any>(null);
-  const cookie = cookies["LAVERDABOOM-AUTH"];
+  const [dog, setDog] = useState<Partial<Dog>>(INITIAL_STATE);
+  const [image, setImage] = useState<File | null>(null);
+  const [displayImage, setDisplayImage] = useState<string | null>(null);
   const serverURL = process.env.NEXT_PUBLIC_SERVER_URL;
 
-  const handleImageChange = (event: any) => {
-    setImage(event.target.files[0]);
-
-    setDisplayImage(URL.createObjectURL(event.target.files[0]));
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setDog((prev) => ({ ...prev, [name]: value || null }));
   };
 
-  const onSubmit = async (e: any) => {
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setImage(file);
+    setDisplayImage(URL.createObjectURL(file));
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    console.log("session: ", session)
+    const { data: { session } } = await supabase.auth.getSession();
 
     try {
       await axios.post(
         `${serverURL}/dogs`,
-        {
-          name: name,
-          breed: breed && breed,
-          gender: gender && gender,
-          hair_type: hairType && hairType,
-          reg_nr: regNr && regNr,
-          color: color && color,
-          ivdd: IVDD && IVDD,
-          BPH: BPH && BPH,
-          eyes: eyes && eyes,
-          birth_date: birthDate && birthDate,
-          description: description && description,
-          image: image && image,
-          nickname: nickname,
-        },
+        { ...dog, image },
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -69,11 +61,29 @@ const AddNew = () => {
         },
       );
       toast("Hund tillagd!", { type: "success" });
+      setDog(INITIAL_STATE);
+      setImage(null);
+      setDisplayImage(null);
     } catch (error) {
       toast((error as any)?.response?.data?.message, { type: "error" });
       console.log("error: ", error);
     }
   };
+
+  const fields: { label: string; name: keyof Dog }[] = [
+    { label: "Namn", name: "name" },
+    { label: "Smeknamn", name: "nickname" },
+    { label: "Ras", name: "breed" },
+    { label: "Kön", name: "gender" },
+    { label: "Hår", name: "hair_type" },
+    { label: "Regnr", name: "reg_nr" },
+    { label: "Färg", name: "color" },
+    { label: "IVDD", name: "ivdd" },
+    { label: "BPH", name: "bph" },
+    { label: "Ögon", name: "eye" },
+    { label: "Födelsedatum", name: "birth_date" },
+    { label: "Beskrivning", name: "description" },
+  ];
 
   return (
     <div className="pt-[25vh] mb-[5rem]">
@@ -84,124 +94,26 @@ const AddNew = () => {
             "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
         }}
       >
-        <h2 className="w-fit m-auto font-cursive text-[4rem]">
-          Lägg till hund
-        </h2>
+        <h2 className="w-fit m-auto font-cursive text-[4rem]">Lägg till hund</h2>
         <div className="add-form-container">
           <form
             className="m-auto w-full mx-[3rem] grid mt-[2rem]"
             onSubmit={onSubmit}
           >
+            {fields.map(({ label, name }) => (
+              <div key={name} className="grid justify-start my-[1rem] w-full">
+                <label>{label}:</label>
+                <input
+                  className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
+                  type="text"
+                  name={name}
+                  value={(dog[name] as string) ?? ""}
+                  onChange={handleChange}
+                />
+              </div>
+            ))}
             <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Namn:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Smeknamn:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Ras:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={breed}
-                onChange={(e) => setBreed(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Kön:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Hår:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={hairType}
-                onChange={(e) => setHairType(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Regnr:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={regNr}
-                onChange={(e) => setRegNr(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Färg:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">IVDD:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={IVDD}
-                onChange={(e) => setIVDD(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">BPH:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={BPH}
-                onChange={(e) => setBPH(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Ögon:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={eyes}
-                onChange={(e) => setEyes(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Födelsedatum:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Beskrivning:</label>
-              <input
-                className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-            </div>
-            <div className="grid justify-start my-[1rem] w-full">
-              <label htmlFor="">Bild:</label>
+              <label>Bild:</label>
               <input
                 className="border-accent border-[1px] py-[0.3rem] px-[0.5rem] w-[400px]"
                 type="file"
@@ -218,9 +130,9 @@ const AddNew = () => {
             </div>
           </form>
         </div>
-        {image && (
-          <div className="w-[80%] m-auto mt-[3rem]">
-            <img src={displayImage} alt="display" className="max-w-full" />
+        {displayImage && (
+          <div className="relative w-[80%] h-[300px] m-auto mt-[3rem]">
+            <Image src={displayImage} alt="preview" fill className="object-contain" />
           </div>
         )}
       </div>

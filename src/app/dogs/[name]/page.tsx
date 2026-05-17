@@ -1,9 +1,12 @@
 import { FiAward } from "react-icons/fi";
-import { Dog } from "../page";
+/* import { Dog } from "../page"; */
 import Sidebar from "@/components/Sidebar";
 import { assetUrl, colors } from "@/assets/constants";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";
 import AnimatedListItem from "@/components/AnimatedListItem";
+import { Database } from "@/types/supabase";
+
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 export default async function SpecificDog({
 	params,
@@ -19,14 +22,7 @@ export default async function SpecificDog({
 
 	const getDog = await fetch(URL + '/dogs/' + id, { method: 'GET', cache: 'no-store' });
 	const dog: Dog = await getDog.json();
-
-	const images: any = dog?.image?.map((e) => ({
-		original: `${assetUrl}${e}`,
-		thumbnail: `${assetUrl}${e}`,
-	}));
-
-
-
+	
 	return (
 		<div>
 			<div className="pt-[15vh] bg-white w-full flex flex-col lg:flex-row mb-[4rem]">
@@ -121,12 +117,12 @@ export default async function SpecificDog({
 										</div>
 									</li>
 								)}
-								{dog?.BPH && (
+								{dog?.bph && (
 									<li className="flex items-center gap-[10px] justify-start">
 										<div className="flex justify-center items-center gap-[1rem] py-[1rem] px-[3rem]">
 											<div>
 												<p className="text-[0.8rem] uppercase">BPH:</p>
-												<p className="text-[20px] leading-[2rem]">{dog.BPH}</p>
+												<p className="text-[20px] leading-[2rem]">{dog.bph}</p>
 											</div>
 										</div>
 									</li>

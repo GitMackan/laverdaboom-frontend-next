@@ -1,8 +1,6 @@
 import { assetUrl } from "@/assets/constants";
 import AnimatedListItem from "@/components/AnimatedListItem";
-import Link from "next/link";
 import React from "react";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 
 const PlannedPuppies = () => {
 	return (

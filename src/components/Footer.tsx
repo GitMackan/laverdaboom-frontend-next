@@ -4,8 +4,12 @@ import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { assetUrl } from "@/assets/constants";
 import AnimatedListItem from "./AnimatedListItem";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+	const pathname = usePathname()
+
+	if (pathname === '/news') return <></>
 	return (
 		<div
 			className="min-h-[60vh] flex flex-col justify-center pt-[10vh]"

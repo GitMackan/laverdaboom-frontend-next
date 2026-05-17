@@ -2,32 +2,14 @@ import { assetUrl } from "../../assets/constants";
 import Link from "next/link";
 import Sidebar from "@/components/Sidebar";
 import AnimatedListItem from "@/components/AnimatedListItem";
+import { Database } from "@/types/supabase";
 
 export type Parent = {
 	name: string;
 	titles: string;
 };
 
-export type Dog = {
-	id: number;
-	name: string;
-	breed?: string;
-	gender?: string;
-	size?: string;
-	hair_type?: string;
-	reg_nr?: string;
-	color?: string;
-	ivdd?: string;
-	nickname: string;
-	BPH?: string;
-	eye?: string;
-	birth_date?: string;
-	description?: string;
-	angel_dog?: string;
-	titles?: string[];
-	image: string[];
-	pedigree: Parent[];
-};
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 export default async function Dogs() {
 	const URL = process.env.NEXT_PUBLIC_SERVER_URL
@@ -63,10 +45,7 @@ export default async function Dogs() {
 											className="m-auto"
 										>
 											<div className="w-full overflow-hidden">
-												<img
-													src={`${assetUrl}${e?.image?.[0]}`}
-													className="max-h-[100%] max-w-full cursor-pointer rounded-xl"
-												/>
+												<img src={`${assetUrl}${e?.image?.[0]}`} alt="img" className="max-h-[100%] max-w-full cursor-pointer rounded-xl"/>
 											</div>
 										</Link>
 									</AnimatedListItem>
