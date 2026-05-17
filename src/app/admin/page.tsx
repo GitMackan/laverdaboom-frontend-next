@@ -2,7 +2,6 @@
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Dog } from "@/app/dogs/page";
 import { assetUrl } from "@/assets/constants";
 import Link from "next/link";
 import AnimatedListItem from "@/components/AnimatedListItem";
@@ -10,6 +9,9 @@ import { createBrowserClient } from "@supabase/ssr";
 import { useRouter } from "next/navigation";
 import { FaArrowRight } from "react-icons/fa";
 import { IoAddCircleOutline } from "react-icons/io5";
+import { Database } from "@/types/supabase";
+
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 
 export type Parent = {
@@ -53,7 +55,7 @@ const Admin = () => {
                   <Link href={`/admin/${e.id}`} className="m-auto">
                     <div className="w-full overflow-hidden">
                       <img
-                        src={`${assetUrl}${e.image[0]}`}
+                        src={`${assetUrl}${e?.image?.[0]}`}
                         className="max-h-[100%] max-w-full cursor-pointer rounded-xl"
                       />
                     </div>

@@ -1,6 +1,8 @@
 import React from "react";
-import { Dog } from "@/app/dogs/page";
 import DropdownMenu from "./Dropdown";
+import { Database } from "@/types/supabase";
+
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 const MobileSidebar = ({ dogs }: MobileSidebarProps) => {
 	return <DropdownMenu options={dogs} title="Välj hund" />;

@@ -1,5 +1,4 @@
 import { FiAward } from "react-icons/fi";
-/* import { Dog } from "../page"; */
 import Sidebar from "@/components/Sidebar";
 import { assetUrl, colors } from "@/assets/constants";
 import ImageCarousel from "@/components/ImageCarousel/ImageCarousel";

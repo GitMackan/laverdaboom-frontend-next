@@ -73,7 +73,7 @@ export default async function Dogs() {
 										>
 											<div className="w-full overflow-hidden">
 												<img
-													src={`${assetUrl}${e.image[0]}`}
+													src={`${assetUrl}${e?.image?.[0]}`}
 													className="max-h-[100%] max-w-[100%] cursor-pointer rounded-xl"
 												/>
 											</div>

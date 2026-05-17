@@ -3,9 +3,11 @@
 import React, { useEffect } from "react";
 import { FiMinus } from "react-icons/fi";
 import Link from "next/link";
-import { Dog } from "@/app/dogs/page";
 import { useWindowSize } from "@/utils/useWindowSize";
 import MobileSidebar from "./MobileSidebar";
+import { Database } from "@/types/supabase";
+
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 const Sidebar = ({ dogs }: SidebarProps) => {
 	const screenWidth = useWindowSize().width;

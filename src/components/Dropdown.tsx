@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { Dog } from "@/app/dogs/page";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
+import { Database } from "@/types/supabase";
+
+type Dog = Database['public']['Tables']['dogs']['Row']
 
 export type Option = {
 	_key?: string;
