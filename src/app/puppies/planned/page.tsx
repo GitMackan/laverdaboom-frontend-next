@@ -19,12 +19,14 @@ const PlannedPuppies = () => {
 						</h2>
 					</AnimatedListItem>
 					<AnimatedListItem index={0}>
-						<p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em] w-fit m-auto">
-							Vi planerar att para Knopa sommaren 2026. Vi återkommer inom kort med mer information.
+						<p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em]  w-[90%] lg:w-[50%] m-auto">
+							I juni väntar vi med stor glädje vår valpkull efter Daxwall´s Dream Come True & Huntaks Look At Me Now ✨🐾
+Förväntningarna är en kull med trevliga hundar, både mentalt och exteriört. Pappan bär även genen N/CDDY, så det blir spännande att se om den förs vidare till någon av valparna.
 						</p>
-						<img src={`${assetUrl}knopa.jpg`} alt="" className="max-h-[100%] max-w-[400px] cursor-pointer rounded-xl m-auto" />
+						<img src={`${assetUrl}hippo-knopa.png`} alt="" className="max-h-[100%] w-[90%] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto" />
 					</AnimatedListItem>
 				</ul>
+
 			</div>
 		</div>
 	);
