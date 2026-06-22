@@ -5,30 +5,43 @@ import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
 import { FaDog } from "react-icons/fa";
 
 const CurrentPuppies = () => {
-	return (
-		<div className="pt-[15vh]">
-			<div
-				className="flex flex-col justify-start pb-[5rem] min-h-[80dvh]"
-				style={{
-					background:
-						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-				}}
-			>
-				<ul>
-					<AnimatedListItem index={0}>
-						<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-							Aktuell valpkull
-						</h2>
-					</AnimatedListItem>
-					<AnimatedListItem index={0}>
-						<p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em] w-fit m-auto">
-							För tillfället har vi ingen aktuell valpkull.
-						</p>
-					</AnimatedListItem>
-				</ul>
-			</div>
-		</div>
-	);
+  return (
+    <div className="pt-[15vh]">
+      <div
+        className="flex flex-col justify-start pb-[5rem] min-h-[80dvh]"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
+        }}
+      >
+        <ul>
+          <AnimatedListItem index={0}>
+            <h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
+              Aktuell valpkull
+            </h2>
+          </AnimatedListItem>
+          <AnimatedListItem index={0}>
+            <p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em]  w-[90%] lg:w-[50%] m-auto">
+              Nu har valparna äntligen kommit! Efter en lugn och smidig valpning
+              under natten välkomnade vi fyra pigga valpar till världen 🐾 tre
+              hanar 💙💙💙 och en tik ❤️ Pappa: Daxwall's Dream Come True
+              (NCDDY) Mamma: Huntaks Look At Me Know
+            </p>
+            <img
+              src={`${assetUrl}knopa_valpar.jpg`}
+              alt=""
+              className="max-h-[100%] w-[90%] mb-[2rem] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto"
+            />
+			<img
+              src={`${assetUrl}daxwall_huntaks.jpg`}
+              alt=""
+              className="max-h-[100%] w-[90%] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto"
+            />
+          </AnimatedListItem>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default CurrentPuppies;
