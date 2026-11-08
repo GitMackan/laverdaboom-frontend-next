@@ -1,73 +1,33 @@
-"use client";
-
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { assetUrl } from "@/assets/constants";
 import Link from "next/link";
-import AnimatedListItem from "@/components/AnimatedListItem";
-import { createBrowserClient } from "@supabase/ssr";
-import { useRouter } from "next/navigation";
-import { FaArrowRight } from "react-icons/fa";
-import { IoAddCircleOutline } from "react-icons/io5";
-import { Database } from "@/types/supabase";
+import { FiArrowRight, FiPackage, FiClipboard } from "react-icons/fi";
+import { LuDog } from "react-icons/lu";
 
-type Dog = Database['public']['Tables']['dogs']['Row']
+const sections = [
+  { title: "Hundar", description: "Hantera hundarnas information, bilder och stamtavlor.", href: "/admin/dogs", addHref: "/admin/add", addLabel: "Lägg till hund", Icon: LuDog },
+  { title: "Produkter", description: "Hantera shopens produkter, bilder, varianter och lager.", href: "/admin/products", addHref: "/admin/products/add", addLabel: "Lägg till produkt", Icon: FiPackage },
+  { title: "Beställningar", description: "Se betalda köp, kunduppgifter och leveranser. Följ beställningen tills den är slutförd.", href: "/admin/orders", addHref: "", addLabel: "", Icon: FiClipboard },
+];
 
-
-export type Parent = {
-  name: string;
-  titles: string;
-};
-
-export type Pedigree = Parent;
-
-const Admin = () => {
-  const router = useRouter();
-  const [dogs, setDogs] = useState<Dog[] | undefined>();
-  const URL = process.env.NEXT_PUBLIC_SERVER_URL;
-
-  axios.defaults.withCredentials = true;
-
-  useEffect(() => {
-    axios.get(`${URL}/dogs`).then((response) => {
-      setDogs(response.data);
-    });
-  }, []);
-
+export default function AdminOverview() {
   return (
-    <div className="pt-[15vh]">
-      <div className="mt-[3rem] w-[80%] m-auto">
-        <div className="flex items-center gap-[.6rem] border border-black w-fit justify-self-end p-[.6rem] mr-[2rem] rounded-md cursor-pointer hover:bg-[#ccc]" onClick={() => router.push('/admin/add')}>
-          <IoAddCircleOutline size={24} />
-          <p className="font-primary uppercase font-normal text-[.8rem]">Lägg till hund</p>
-        </div>
-        <div className="w-full">
-          <div className="p-[2rem] grid gap-y-[3rem] gap-x-[3rem] w-full grid-cols-small lg:grid-cols-large">
-            {dogs?.map((e, index) => (
-              <ul
-                key={e.id}
-                className="flex flex-col text-center gap-[1rem] overflow-hidden"
-              >
-                <AnimatedListItem index={index}>
-                  <h3 className="text-[1.1rem] font-secondary font-thin mb-[.5rem]">
-                    {e.name} {e.nickname === "Astrid" && ` - ${e.nickname}`}
-                  </h3>
-                  <Link href={`/admin/${e.id}`} className="m-auto">
-                    <div className="w-full overflow-hidden">
-                      <img
-                        src={`${assetUrl}${e?.image?.[0]}`}
-                        className="max-h-[100%] max-w-full cursor-pointer rounded-xl"
-                      />
-                    </div>
-                  </Link>
-                </AnimatedListItem>
-              </ul>
-            ))}
-          </div>
-        </div>
+    <main className="w-[90%] max-w-[1200px] mx-auto">
+      <h1 className="font-cursive text-5xl md:text-6xl mb-4">Översikt</h1>
+      <p className="font-primary text-gray-600 mb-10">Välj vad du vill arbeta med.</p>
+      <div className="grid md:grid-cols-2 gap-6">
+        {sections.map(({ title, description, href, addHref, addLabel, Icon }) => (
+          <section key={href} className="rounded-xl border border-gray-200 bg-[#faf7f5] p-6 md:p-8">
+            <Icon size={32} aria-hidden="true" className="mb-5" />
+            <h2 className="font-secondary text-2xl mb-3">{title}</h2>
+            <p className="font-primary text-gray-600 mb-8">{description}</p>
+            <div className="flex flex-wrap items-center gap-5">
+              <Link href={href} className="inline-flex items-center gap-3 !bg-[#222] !text-white rounded-md px-5 py-3 font-primary text-sm">
+                Hantera {title.toLowerCase()} <FiArrowRight aria-hidden="true" />
+              </Link>
+              {addHref && <Link href={addHref} className="font-primary text-sm underline">{addLabel}</Link>}
+            </div>
+          </section>
+        ))}
       </div>
-    </div>
+    </main>
   );
-};
-
-export default Admin;
+}

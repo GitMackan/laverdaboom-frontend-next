@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Head from "next/head";
 import { assetUrl } from "@/assets/constants";
 import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from "@/lib/toastify/ToastProvider";
@@ -21,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="sv">
       <body>
         <Navbar />
         {children}

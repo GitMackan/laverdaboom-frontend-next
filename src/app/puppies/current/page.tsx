@@ -1,47 +1,10 @@
-import { assetUrl } from "@/assets/constants";
-import AnimatedListItem from "@/components/AnimatedListItem";
-import React from "react";
-import { BsGenderFemale, BsGenderMale } from "react-icons/bs";
-import { FaDog } from "react-icons/fa";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
+import { FiArrowUpRight, FiHeart } from "react-icons/fi";
+import PuppyPageShell from "@/components/PuppyPageShell";
 
-const CurrentPuppies = () => {
-  return (
-    <div className="pt-[15vh]">
-      <div
-        className="flex flex-col justify-start pb-[5rem] min-h-[80dvh]"
-        style={{
-          background:
-            "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-        }}
-      >
-        <ul>
-          <AnimatedListItem index={0}>
-            <h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-              Aktuell valpkull
-            </h2>
-          </AnimatedListItem>
-          <AnimatedListItem index={0}>
-            <p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em]  w-[90%] lg:w-[50%] m-auto">
-              Nu har valparna äntligen kommit! Efter en lugn och smidig valpning
-              under natten välkomnade vi fyra pigga valpar till världen 🐾 tre
-              hanar 💙💙💙 och en tik ❤️ Pappa: Daxwall's Dream Come True
-              (NCDDY) Mamma: Huntaks Look At Me Know
-            </p>
-            <img
-              src={`${assetUrl}knopa_valpar.jpg`}
-              alt=""
-              className="max-h-[100%] w-[90%] mb-[2rem] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto"
-            />
-			<img
-              src={`${assetUrl}daxwall_huntaks.jpg`}
-              alt=""
-              className="max-h-[100%] w-[90%] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto"
-            />
-          </AnimatedListItem>
-        </ul>
-      </div>
-    </div>
-  );
-};
+export const metadata: Metadata = { title: "Aktuell valpkull | Kennel Laverdaboom", description: "Just nu har Kennel Laverdaboom inga aktuella valpar. Kontakta oss om du är intresserad av en framtida valp." };
 
-export default CurrentPuppies;
+export default function CurrentPuppies() {
+  return <PuppyPageShell active="/puppies/current" eyebrow="Här och nu" title={<>Aktuella <em>valpar.</em></>} description="Här berättar vi när det finns en aktuell valpkull hos oss."><section className="site-container puppy-status-section" aria-labelledby="puppy-status-title"><div className="puppy-status-card"><span className="puppy-status-icon"><FiHeart aria-hidden="true" /></span><p className="site-eyebrow">Just nu hos oss</p><h2 id="puppy-status-title">Vi har inga aktuella valpar just nu.</h2><p>Du är varmt välkommen att kontakta oss om du är intresserad av en framtida valp. Vi lär gärna känna dig och berättar mer om vår uppfödning.</p><div className="site-actions"><Link href="/contact" className="site-button site-button-green">Hör av dig till oss <FiArrowUpRight aria-hidden="true" /></Link><Link href="/puppies/previous" className="site-text-link">Se tidigare valpkullar <FiArrowUpRight aria-hidden="true" /></Link></div></div></section></PuppyPageShell>;
+}

@@ -1,274 +1,65 @@
-"use client";
+﻿"use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Hamburger from "hamburger-react";
-import { motion } from "framer-motion";
-import { colors } from "@/assets/constants";
 import { usePathname } from "next/navigation";
+import { FiChevronDown, FiMenu, FiX } from "react-icons/fi";
+import CartIcon from "./Products/CartIcon";
+import { shopEnabled } from "@/lib/features";
 
-const navItems = [
-	{ label: "Hem", href: "/" },
-	{ label: "Våra hundar", href: "/dogs" },
-	{
-		label: "Valpar",
-		href: "/puppies",
-		childLinks: [
-			{ name: "Valpköp", href: "/puppies" },
-			{ name: "Tidigare valpar", href: "/puppies/previous" },
-			{ name: "Plannerade valpar", href: "/puppies/planned" },
-			{ name: "Aktuell valpkull", href: "/puppies/current" },
-		],
-	},
-	{ label: "Nyheter", href: "/news" },
-	{ label: "Kontakt", href: "/contact" },
+const links = [
+  { href: "/", label: "Hem" },
+  { href: "/dogs", label: "Våra hundar" },
+  { href: "/puppies", label: "Valpar" },
+  { href: "/news", label: "Nyheter" },
+  ...(shopEnabled ? [{ href: "/shop", label: "Shop" }] : []),
+];
+const puppyLinks = [
+  { href: "/puppies", label: "Att köpa valp" },
+  { href: "/puppies/current", label: "Aktuell valpkull" },
+  { href: "/puppies/planned", label: "Planerade valpar" },
+  { href: "/puppies/previous", label: "Tidigare valpar" },
 ];
 
-const fadeInAnimationVariants = {
-	initial: {
-		opacity: 0,
-		y: 100,
-	},
-	animate: (index: number) => ({
-		opacity: 1,
-		y: 0,
-		transition: {
-			delay: 0.15 * index,
-		},
-	}),
-};
+export default function Navbar() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [puppiesOpen, setPuppiesOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const puppyButtonRef = useRef<HTMLButtonElement>(null);
 
-const Navbar = () => {
-	const pathname = usePathname();
-	const [topScroll, setTopScroll] = useState(true);
-	const [menuOpen, setMenuOpen] = useState(false);
-	const [isHovered, setIsHovered] = useState(false);
-	const [mobilePuppieSectionOpen, setMobilePuppieSectionOpen] = useState(false);
-	const changeBackground = () => {
-		if (window.scrollY >= 80) {
-			setTopScroll(false);
-		} else {
-			setTopScroll(true);
-		}
-	};
+  useEffect(() => { setMenuOpen(false); setPuppiesOpen(false); }, [pathname]);
+  useEffect(() => {
+    const handlePointer = (event: PointerEvent) => {
+      if (!headerRef.current?.contains(event.target as Node)) { setPuppiesOpen(false); setMenuOpen(false); }
+    };
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false); setPuppiesOpen(false);
+        if (menuOpen) menuButtonRef.current?.focus();
+        else if (puppiesOpen) puppyButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", handlePointer);
+    document.addEventListener("keydown", handleKey);
+    return () => { document.removeEventListener("pointerdown", handlePointer); document.removeEventListener("keydown", handleKey); };
+  }, [menuOpen, puppiesOpen]);
 
-	useEffect(() => {
-		changeBackground();
-		window.addEventListener("scroll", changeBackground);
-	}, []);
+  const active = (href: string) => href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
+  const closeMenus = () => { setMenuOpen(false); setPuppiesOpen(false); };
 
-	function CustomLink({
-		to,
-		children,
-		className,
-		active,
-		...props
-	}: {
-		to: string;
-		children: React.ReactNode;
-		className?: string;
-		active: boolean;
-	}) {
-		const setBorder = (): string => {
-			if (pathname === "/") return active ? "" : "hover:border-b-[1px]";
-
-			return active ? "" : "hover:border-accent hover:border-b-[1px]";
-		};
-
-		const setHoverColor = (): string => {
-			if (!active) return "";
-			return pathname === "/"
-				? "border-b-[3px] border-white"
-				: "border-b-[3px] border-accent";
-		};
-
-		const setColor = (): string => {
-			if (pathname === "/") return !topScroll ? colors.accent : colors.grey;
-
-			return colors.accent;
-		};
-
-		return (
-			<div className={className}>
-				<div
-					className={`flex flex-col justify-center items-center mx-[1rem] ${setBorder()} ${setHoverColor()} `}
-				>
-					<li>
-						<Link
-							href={to}
-							{...props}
-							className="uppercase text-[0.9rem] font-primary font-light"
-							style={{
-								color: setColor(),
-							}}
-						>
-							{children}
-						</Link>
-					</li>
-				</div>
-			</div>
-		);
-	}
-	return (
-		<nav
-			className="fixed w-full flex justify-between items-center py-[1rem] px-[2rem] z-10 min-h-[10vh]"
-			id="navbar"
-			style={{
-				background: topScroll ? "transparent" : "#FFF",
-			}}
-		>
-			<div className="flex items-center justify-center">
-				<h1 className="text-[3rem] font-cursive font-bold z-[995]">
-					<Link
-						href="/"
-						style={{
-							color: menuOpen
-								? colors.accent
-								: pathname === "/"
-								? !topScroll
-									? colors.accent
-									: colors.grey
-								: colors.accent,
-						}}
-					>
-						Laverdaboom
-					</Link>
-				</h1>
-			</div>
-			<ul className="hidden lg:flex flex-1 justify-end items-center list-none text-white cursor-pointer ">
-				<div>
-					<CustomLink to="/" active={pathname === "/"}>
-						Hem
-					</CustomLink>
-				</div>
-				<div>
-					<CustomLink to="/dogs" active={pathname === "/dogs"}>
-						Våra hundar
-					</CustomLink>
-				</div>
-				<div
-					className="relative"
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-				>
-					<CustomLink to="/puppies" active={pathname === "/puppies"}>
-						Valpar
-					</CustomLink>
-					<div className="absolute w-fit flex flex-col left-[10px] bg-[#fff]">
-						{isHovered && (
-							<>
-								<Link
-									href="/puppies/previous"
-									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
-								>
-									Tidigare valpar
-								</Link>
-								<Link
-									href="/puppies/planned"
-									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
-								>
-									Planerade valpar
-								</Link>
-								<Link
-									href="/puppies/current"
-									className="text-accent font-primary uppercase text-[0.8rem] p-[0.4rem] whitespace-nowrap hover:underline font-light cursor-pointer"
-								>
-									Aktuell valpkull
-								</Link>
-							</>
-						)}
-					</div>
-				</div>
-				<div>
-					<CustomLink to="/news" active={pathname === "/news"}>
-						Nyheter
-					</CustomLink>
-				</div>
-				<div>
-					<CustomLink to="/contact" active={pathname === "/contact"}>
-						Kontakt
-					</CustomLink>
-				</div>
-			</ul>
-			<div className="flex lg:hidden">
-				<div className="z-[999]">
-					<Hamburger
-						direction="left"
-						onToggle={() => setMenuOpen(!menuOpen)}
-						toggled={menuOpen}
-						color={
-							menuOpen
-								? "black"
-								: topScroll
-								? pathname === "/"
-									? "white"
-									: "black"
-								: "black"
-						}
-					/>
-				</div>
-				{menuOpen && (
-					<div
-						className="flex items-center justify-center fixed w-full h-[100vh] transition-all duration-300 ease-in left-0 z-[990] bg-white"
-						style={menuOpen ? { top: "0" } : { top: "-100%" }}
-					>
-						<ul className="navbar-smallscreen_links">
-							{navItems.map((e, index) => (
-								<motion.li
-									onClick={() => {
-										if (e.label.toLowerCase() === "valpar") {
-											setMobilePuppieSectionOpen(!mobilePuppieSectionOpen);
-										} else {
-											setMenuOpen(false);
-										}
-									}}
-									key={index}
-									variants={fadeInAnimationVariants}
-									initial="initial"
-									whileInView="animate"
-									custom={index}
-									className="m-[2rem] cursor-pointer text-[1.4rem] text-center"
-								>
-									{e.label.toLowerCase() !== "valpar" ? (
-										<Link
-											href={e.href}
-											className="font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[1.1rem]"
-										>
-											{e.label}
-										</Link>
-									) : (
-										<p
-											className="font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[1.1rem]"
-											onClick={() =>
-												setMobilePuppieSectionOpen(!mobilePuppieSectionOpen)
-											}
-										>
-											{e.label}
-										</p>
-									)}
-									{mobilePuppieSectionOpen && (
-										<div className="flex flex-col">
-											{e.childLinks?.map((e, i) => (
-												<Link
-													key={i}
-													href={e.href}
-													onClick={() => setMenuOpen(false)}
-													className={`font-secondary no-underline pb-[0.3rem] text-accent uppercase text-[.9rem] ${
-														i === 0 ? "mt-[.4rem]" : "0"
-													}`}
-												>
-													{e.name}
-												</Link>
-											))}
-										</div>
-									)}
-								</motion.li>
-							))}
-						</ul>
-					</div>
-				)}
-			</div>
-		</nav>
-	);
-};
-export default Navbar;
+  return (
+    <header className="site-header" ref={headerRef}>
+      <div className="site-container site-header-inner">
+        <Link href="/" className="site-brand" aria-label="Kennel Laverdaboom – startsida" onClick={closeMenus}><span>Laverdaboom</span><small>KENNEL · SEDAN 2015</small></Link>
+        <nav aria-label="Huvudmeny" className="site-desktop-nav"><ul>{links.map((link) => <li key={link.href} className="site-nav-item">
+          <div className="site-nav-link-row"><Link href={link.href} className={active(link.href) ? "site-nav-link is-active" : "site-nav-link"} aria-current={pathname === link.href ? "page" : undefined} onClick={closeMenus}>{link.label}</Link>{link.href === "/puppies" && <button ref={puppyButtonRef} type="button" className="site-dropdown-toggle" aria-label="Visa valpsidor" aria-expanded={puppiesOpen} aria-controls="puppy-menu" onClick={() => setPuppiesOpen(!puppiesOpen)}><FiChevronDown aria-hidden="true" /></button>}</div>
+          {link.href === "/puppies" && puppiesOpen && <ul id="puppy-menu" className="site-dropdown">{puppyLinks.map((child) => <li key={child.href}><Link href={child.href} aria-current={pathname === child.href ? "page" : undefined} onClick={closeMenus}>{child.label}</Link></li>)}</ul>}
+        </li>)}</ul><Link href="/contact" className="site-nav-contact" aria-current={pathname === "/contact" ? "page" : undefined} onClick={closeMenus}>Kontakta oss</Link></nav>
+        <div className="site-header-actions">{shopEnabled && <CartIcon />}<button ref={menuButtonRef} type="button" className="site-menu-toggle" aria-label={menuOpen ? "Stäng menyn" : "Öppna menyn"} aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}</button></div>
+      </div>
+      {menuOpen && <nav id="mobile-navigation" className="site-mobile-nav" aria-label="Mobilmeny"><ul>{links.map((link) => <li key={link.href}><div className="site-mobile-link-row"><Link href={link.href} aria-current={pathname === link.href ? "page" : undefined} className={active(link.href) ? "is-active" : ""} onClick={closeMenus}>{link.label}</Link>{link.href === "/puppies" && <button type="button" aria-label="Visa valpsidor" aria-expanded={puppiesOpen} aria-controls="mobile-puppy-menu" onClick={() => setPuppiesOpen(!puppiesOpen)}><FiChevronDown aria-hidden="true" /></button>}</div>{link.href === "/puppies" && puppiesOpen && <ul id="mobile-puppy-menu" className="site-mobile-sublinks">{puppyLinks.map((child) => <li key={child.href}><Link href={child.href} onClick={closeMenus} aria-current={pathname === child.href ? "page" : undefined}>{child.label}</Link></li>)}</ul>}</li>)}<li><Link href="/contact" className="site-nav-contact" onClick={closeMenus}>Kontakta oss</Link></li></ul></nav>}
+    </header>
+  );
+}

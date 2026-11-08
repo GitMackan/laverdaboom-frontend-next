@@ -17,7 +17,7 @@ const config: Config = {
 			error: "FF0000",
 		},
 		fontFamily: {
-			primary: ["Roboto", "sans-serif"],
+			primary: ["Manrope", "sans-serif"],
 			cursive: ["The nautigal", "cursive"],
 			secondary: ["Playfair", "serif"],
 		},

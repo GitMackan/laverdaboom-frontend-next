@@ -1,28 +1,23 @@
-const HeroSection = () => {
-	return (
-		<div
-			style={{
-				background:
-					"url('https://laverdaboom.s3.eu-north-1.amazonaws.com/uploads/valpar_cover.jpeg'), rgb(150, 150, 150)",
-				backgroundSize: "cover",
-				backgroundAttachment: "scroll",
-				backgroundPosition: "center",
-			}}
-			className="w-full h-[100vh] flex items-center bg-blend-multiply pt-[20rem]"
-		>
-			<div className="relative w-[80%] m-auto text-white">
-				<p className="absolute left-[30px] medium:left-[100px] top-[-20px] medium:top-[40px] text-[4rem] font-cursive font-thin">
-					Kennel
-				</p>
-				<h1 className="font-cursive text-[5.5rem] medium:text-[10rem] font-thin ">
-					Laverdaboom
-				</h1>
-				<p className="font-secondary text-[1.4rem] pl-[20px] absolute bottom-[-40px] sm:bottom-[0px] left-[-15px] medium:left-[0px] medium:bottom-[20px]">
-					En liten kennel som föder upp taxar i familjemiljö
-				</p>
-			</div>
-		</div>
-	);
-};
+﻿import Image from "next/image";
+import Link from "next/link";
+import { assetUrl } from "@/assets/constants";
+import { FiArrowDown, FiArrowUpRight } from "react-icons/fi";
 
-export default HeroSection;
+export default function HeroSection() {
+  return (
+    <section className="home-hero" aria-labelledby="home-title">
+      <Image src={`${assetUrl}valpar_cover.jpeg`} alt="Taxvalpar hos Kennel Laverdaboom" fill priority unoptimized sizes="100vw" className="home-hero-image" />
+      <div className="home-hero-shade" />
+      <div className="site-container home-hero-content">
+        <p className="site-eyebrow">Kennel Laverdaboom · Västerås</p>
+        <h1 id="home-title">Små tassar.<br />Stor <em>kärlek.</em></h1>
+        <p className="home-hero-description">Långhåriga standardtaxar, uppfödda i hemmiljö.<br className="desktop-break" /> Med omsorg om varje hund, från första dagen.</p>
+        <div className="site-actions">
+          <Link href="/dogs" className="site-button site-button-light">Lär känna våra hundar <FiArrowUpRight aria-hidden="true" /></Link>
+          <Link href="/puppies" className="hero-text-link">Om att köpa valp <FiArrowUpRight aria-hidden="true" /></Link>
+        </div>
+      </div>
+      <div className="site-container home-hero-bottom"><span>En liten kennel. En stor del av familjen.</span><a href="#om-oss" aria-label="Läs om kenneln"><FiArrowDown aria-hidden="true" /></a></div>
+    </section>
+  );
+}

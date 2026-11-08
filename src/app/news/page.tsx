@@ -1,24 +1,21 @@
-import React from "react";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
+import { FiArrowUpRight, FiInstagram } from "react-icons/fi";
 import InstagramWidget from "@/components/instagramWidget";
 
-export default async function News() {
+export const metadata: Metadata = {
+  title: "Nyheter & vardagsliv | Kennel Laverdaboom",
+  description: "Följ vardagen hos Kennel Laverdaboom. Bilder och glimtar från livet med våra taxar, direkt från Sandras Instagram.",
+};
+
+const instagramURL = "https://www.instagram.com/sandra_kennellaverdaboom/";
+
+export default function News() {
   return (
-    <div
-      className="pt-[15vh]"
-      style={{
-        background:
-          "linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-      }}
-    >
-      {/* <h2 className="text-center m-auto mt-[2rem] font-cursive text-[5rem] border-detail border-b-[1px] w-fit pb-[0.5rem]">
-        Nyheter
-      </h2>
-      <p className="w-[80%] m-auto text-center max-w-[600px] mt-[2rem] text-[1.2rem] mb-[2rem] font-secondary">
-        Håll dig uppdaterad om nyheter i kenneln genom Sandras instagram!
-      </p> */}
-      <div className="w-[100%] m-auto flex flex-col">
-        <InstagramWidget />
-      </div>
-    </div>
+    <main className="news-page">
+      <header className="news-intro"><div className="site-container"><p className="site-eyebrow">Små ögonblick från kennellivet</p><h1>Nyheter &amp;<br /><em>vardagsglädje.</em></h1><div className="news-intro-bottom"><p>Hundliv, valpmys och äventyr tillsammans.<br />Följ med i vår vardag genom Sandras Instagram.</p><a href={instagramURL} target="_blank" rel="noopener noreferrer" className="site-button site-button-green"><FiInstagram aria-hidden="true" /> Följ oss på Instagram <FiArrowUpRight aria-hidden="true" /></a></div></div></header>
+      <section className="site-container news-feed" aria-labelledby="news-feed-title"><div className="news-feed-heading"><div><p className="site-eyebrow">Från vårt Instagram</p><h2 id="news-feed-title">Livet med våra <em>taxar.</em></h2></div><a href={instagramURL} target="_blank" rel="noopener noreferrer" className="news-profile-link"><FiInstagram aria-hidden="true" /><span>@sandra_kennellaverdaboom</span><FiArrowUpRight aria-hidden="true" /></a></div><div className="news-widget"><InstagramWidget /></div><div className="news-feed-note"><p>Syns inte bilderna? Du kan också se inläggen direkt på Instagram.</p><a href={instagramURL} target="_blank" rel="noopener noreferrer" className="site-text-link">Öppna Instagram <FiArrowUpRight aria-hidden="true" /></a></div></section>
+      <section className="news-more"><div className="site-container"><div><p className="site-eyebrow">Lär känna vår hundfamilj</p><h2>Mer än fina <em>ögonblick.</em></h2><p>Upptäck personligheterna bakom bilderna och läs om våra valpar.</p></div><div className="site-actions"><Link href="/dogs" className="site-button site-button-green">Möt våra hundar <FiArrowUpRight aria-hidden="true" /></Link><Link href="/puppies" className="site-text-link">Om våra valpar <FiArrowUpRight aria-hidden="true" /></Link></div></div></section>
+    </main>
   );
 }

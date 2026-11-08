@@ -1,425 +1,123 @@
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import { assetUrl } from "@/assets/constants";
-import AnimatedListItem from "@/components/AnimatedListItem";
-import React from "react";
-import { FaDog } from "react-icons/fa";
+import PuppyPageShell from "@/components/PuppyPageShell";
+import litters from "./litters.json";
 
-const PreviousPuppies = () => {
-	return (
-		<div className="pt-[15vh]">
-			<div className="max-w-[1600px] m-auto">
-				<div className="flex flex-col w-full lg:w-[80%] m-auto">
-					<ul>
-						<AnimatedListItem index={0}>
-							<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-								Tidigare valpkullar
-							</h2>
-						</AnimatedListItem>
-					</ul>
-
-					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
-						<AnimatedListItem index={0} className="flex-1">
-							<div className="p-[3rem]">
-								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Pazir's Sirocco x Bella Rose Marzenie Gabrysi
-								</h3>
-								<p className="my-[1rem] font-secondary">2024-08-12</p>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms PS TAMINA</p>
-												<p>SE40939/2024</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms PS TESS</p>
-												<p>SE40940/2024</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms PS TINDRA</p>
-												<p>SE40941/2024</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms PS TOSCA</p>
-												<p>SE40942/2024</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</AnimatedListItem>
-						<AnimatedListItem index={1} className="flex-1">
-							<div>
-								<div
-									className="grid gap-[0.5rem] w-full m-auto"
-									style={{ gridTemplateColumns: "1fr 1fr" }}
-								>
-									<img
-										src={`${assetUrl}bella-orange.jpg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}bella-gul.jpg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}bella-lila.jpg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}bella-red.jpg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									
-								</div>
-							</div>
-						</AnimatedListItem>
-					</ul>
-
-			
-					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
-						<AnimatedListItem index={0} className="flex-1">
-							<div className="p-[3rem]">
-								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Yxtanejdens Sarek x Laverdabooms Skrållan
-								</h3>
-								<p className="my-[1rem] font-secondary">2023-07-21</p>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Rosie Cotton </p>
-												<p>SE42367/2023</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Legolas </p>
-												<p>SE42363/2023</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Bilbo Bagger </p>
-												<p>SE42364/2023</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Galadriel </p>
-												<p>SE42366/2023</p>
-											</div>
-										</div>
-									</li>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Gimli </p>
-												<p>SE42365/2023</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</AnimatedListItem>
-						<AnimatedListItem index={1} className="flex-1">
-							<div>
-								<div
-									className="grid gap-[0.5rem] w-full m-auto"
-									style={{ gridTemplateColumns: "1fr 1fr" }}
-								>
-									<img
-										src={`${assetUrl}lotr1.jpeg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}lotr2.jpeg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}lotr3.jpeg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}lotr4.jpeg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-									<img
-										src={`${assetUrl}lotr5.jpeg`}
-										className="w-full rounded-xl "
-										style={{
-											boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-										}}
-									/>
-								</div>
-							</div>
-						</AnimatedListItem>
-					</ul>
-
-					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
-						<AnimatedListItem index={0} className="flex-1">
-							<div className="p-[3rem]">
-								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Laverdabooms My Little Pinkie Pie x Ögus Nappe
-								</h3>
-								<p className="my-[1rem] font-secondary">2021-01-23</p>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Dobby</p>
-												<p>SE17821/2021</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Lily Potter</p>
-												<p>SE17822/2021</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Luna Lovegood</p>
-												<p>SE17819/2021</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Ginny Weasley</p>
-												<p>SE17820/2021</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</AnimatedListItem>
-						<AnimatedListItem index={1} className="flex-1">
-							<div>
-								<img
-									src={`${assetUrl}valpkull3.jpg`}
-									className="w-full rounded-xl "
-									style={{
-										boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-									}}
-								/>
-							</div>
-						</AnimatedListItem>
-					</ul>
-
-					<ul className="flex flex-col lg:flex-row justify-center items-center border-[#faeded] border-b-[2px] pb-[3rem] mb-[3rem]">
-						<AnimatedListItem index={0} className="flex-1">
-							<div className="p-[3rem]">
-								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Laverdabooms My Little Pinkie Pie x Red Top's Tiger Of Sweden
-								</h3>
-								<p className="my-[1rem] font-secondary">2020-04-12</p>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Mio Min Mio</p>
-												<p>SE36328/2020</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												{" "}
-												<p>Laverdabooms Skrållan</p>
-												<p>SE36329/2020</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Madicken</p>
-												<p>SE36330/2020</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul>
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms Kajsa Kavat</p>
-												<p>SE36331/2020</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</AnimatedListItem>
-						<AnimatedListItem index={1} className="flex-1">
-							<div>
-								<img
-									src={`${assetUrl}valpkull2-2.jpg`}
-									className="w-full rounded-xl "
-									style={{
-										boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-									}}
-								/>
-							</div>
-						</AnimatedListItem>
-					</ul>
-
-					<ul className="flex flex-col lg:flex-row justify-center items-center pb-[3rem] mb-[3rem]">
-						<AnimatedListItem index={0} className="flex-1">
-							<div className="p-[3rem]">
-								<h3 className="font-secondary font-medium text-[1.5rem] mb-[0.5rem]">
-									Chirribi's Mc Laverdatax x Hannes Vom Strootbachtal
-								</h3>
-								<p className="my-[1rem] font-secondary">2016-03-24</p>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms My Little Shiningarmor</p>
-												<p>SE28130/2016</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms My Little King Sombra</p>
-												<p>SE28131/2016</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms My Little Pinkie Pie</p>
-												<p>SE28128/2016</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul className="list-none">
-									<li className="mb-[1rem]">
-										<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-											<FaDog size={18} />
-											<div>
-												<p>Laverdabooms My Little Sweetiebelle</p>
-												<p>SE28129/2016</p>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</AnimatedListItem>
-						<AnimatedListItem index={1} className="flex-1">
-							<div>
-								<img
-									src={`${assetUrl}valpkull1.jpg`}
-									className="w-full rounded-xl "
-									style={{
-										boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-									}}
-								/>
-							</div>
-						</AnimatedListItem>
-					</ul>
-				</div>
-			</div>
-		</div>
-	);
+export const metadata: Metadata = {
+  title: "Tidigare valpkullar | Kennel Laverdaboom",
+  description:
+    "Valpalbum från Kennel Laverdaboom. Möt våra tidigare kullar, deras föräldrar och valparna som har vuxit upp hos oss.",
 };
 
-export default PreviousPuppies;
+function AlbumImage({ file, alt }: { file: string; alt: string }) {
+  return (
+    <div className="puppy-album-image">
+      <Image
+        src={`${assetUrl}${file}`}
+        alt={alt}
+        fill
+        unoptimized
+        sizes="(max-width: 800px) 100vw, 50vw"
+      />
+    </div>
+  );
+}
+
+export default function PreviousPuppies() {
+  return (
+    <PuppyPageShell
+      active="/puppies/previous"
+      eyebrow="Ur vårt valpalbum"
+      title={
+        <>
+          Små tassar.
+          <br />
+          <em>Stora minnen.</em>
+        </>
+      }
+      description="Här samlar vi våra tidigare valpkullar och minnen från deras första tid hos oss."
+    >
+      <div className="site-container puppy-archive">
+        <article
+          id="senaste-kullen"
+          className="puppy-litter"
+          aria-labelledby="latest-litter-title"
+        >
+          <div className="puppy-litter-copy">
+            <p className="site-eyebrow">Tidigare aktuell valpkull</p>
+            <h2 id="latest-litter-title">
+              Daxwall&apos;s Dream Come True × Huntaks Look At Me Now
+            </h2>
+            <p>
+              Efter en lugn och smidig valpning under natten välkomnade vi fyra
+              pigga valpar till världen – tre hanar och en tik.
+            </p>
+            <dl className="puppy-litter-parents">
+              <div>
+                <dt>Pappa</dt>
+                <dd>
+                  Daxwall&apos;s Dream Come True <span>N/CDDY</span>
+                </dd>
+              </div>
+              <div>
+                <dt>Mamma</dt>
+                <dd>Huntaks Look At Me Now</dd>
+              </div>
+            </dl>
+            <span className="puppy-archive-badge">Arkiverad valpkull</span>
+          </div>
+          <div className="puppy-litter-album">
+            <AlbumImage
+              file="knopa_valpar.jpg"
+              alt="De fyra valparna efter Daxwall's Dream Come True och Huntaks Look At Me Now"
+            />
+          </div>
+        </article>
+        {litters.map((litter) => (
+          <article
+            className="puppy-litter"
+            key={litter.date}
+            aria-labelledby={`litter-${litter.date}`}
+          >
+            <div className="puppy-litter-copy">
+              <p className="site-eyebrow">
+                Födda{" "}
+                <time dateTime={litter.date}>
+                  {new Intl.DateTimeFormat("sv-SE", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  }).format(new Date(litter.date))}
+                </time>
+              </p>
+              <h2 id={`litter-${litter.date}`}>
+                {litter.parents.replace(" x ", " × ")}
+              </h2>
+              <ul className="puppy-litter-puppies">
+                {litter.puppies.map((puppy) => (
+                  <li key={puppy.registration}>
+                    <span>{puppy.name}</span>
+                    <small>{puppy.registration}</small>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div
+              className={`puppy-litter-album ${litter.images.length > 1 ? "puppy-album-grid" : ""}`}
+            >
+              {litter.images.map((file, index) => (
+                <AlbumImage
+                  key={file}
+                  file={file}
+                  alt={`Valpkullen född ${litter.date}, bild ${index + 1}`}
+                />
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </PuppyPageShell>
+  );
+}

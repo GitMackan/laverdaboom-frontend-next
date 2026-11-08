@@ -1,172 +1,57 @@
-"use client";
+﻿"use client";
 
-import ErrorModal from "@/components/ErrorModal";
-import SucessModal from "@/components/SuccessModal";
-import { useWindowSize } from "@/utils/useWindowSize";
+import Image from "next/image";
+import Link from "next/link";
+import { FormEvent, useRef, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { BarLoader } from "react-spinners";
+import { FiArrowUpRight, FiCheckCircle, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { assetUrl } from "@/assets/constants";
+
+const contacts = [
+  { name: "Sandra Brännström", image: "sandra.jpeg", address: "Sigfrid Edströms Gata 25B", city: "724 66 Västerås", email: "sandra.brannstrom@hotmail.com", phone: "070-773 91 50", tel: "+46707739150" },
+  { name: "Rosa Johansson", image: "rosa.jpeg", address: "Tunnbrödsvägen 3", city: "724 84 Västerås", email: "rosajohansson@hotmail.se", phone: "073-947 98 79", tel: "+46739479879" },
+];
 
 export default function Contact() {
-	const [name, setName] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [message, setMessage] = useState<string>("");
-	const [loading, setLoading] = useState<boolean>(false);
-	const [success, setSuccess] = useState<boolean>(false);
-	const [error, setError] = useState<string |null>(null)
-	const URL = process.env.NEXT_PUBLIC_SERVER_URL;
-	const screenWidth = useWindowSize().width;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const sendingRef = useRef(false);
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		setLoading(true);
-		e.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (sendingRef.current) return;
+    if (!name.trim() || !email.trim() || !message.trim()) {
+      setError("Fyll i ditt namn, din e-postadress och ett meddelande.");
+      setSuccess(false);
+      return;
+    }
+    sendingRef.current = true;
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_SERVER_URL}/email`, { name: name.trim(), email: email.trim(), message: message.trim() });
+      setName(""); setEmail(""); setMessage(""); setSuccess(true);
+    } catch {
+      setError("Ditt meddelande kunde inte skickas just nu. Försök igen om en stund eller kontakta oss direkt via e-post eller telefon.");
+    } finally {
+      sendingRef.current = false;
+      setLoading(false);
+    }
+  }
 
-		try {
-			await axios.post(`${URL}/email`, {
-				name,
-				email,
-				message,
-			});
-
-			setName("");
-			setEmail("");
-			setMessage("");
-			setSuccess(true);
-		} catch (error) {
-			console.error("Failed.", error);
-			setError('Tyvärr kunde vi inte skicka ditt meddelande just nu. Vänligen försök igen om en stund.')
-		}
-		setLoading(false);
-		
-	};
-
-	useEffect(() => {
-		window.scrollTo({ top: 0, behavior: "auto" });
-	}, []);
-	return (
-		<div
-			className="pt-[20vh] min-h-[100vh] bg-grey flex flex-col justify-center items-center pb-[5rem]"
-			style={{
-				background:
-					"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-			}}
-		>
-			<div
-				className="w-full lg:w-[80%] grid px-[1.5rem] lg:px-[3rem] items-center gap-[5rem]"
-				style={{
-					gridTemplateColumns: screenWidth! >= 1100 ? "1fr 1fr" : "1fr",
-				}}
-			>
-				<div className="w-full font-thin">
-					<h2 className="font-cursive text-[4rem] text-accent mb-[2rem] w-fit border-detail border-b-[0.5px]">
-						Kontakta oss
-					</h2>
-					<p className="text-accent text-[1.2rem]">
-						Har du några frågor eller funderingar, tveka inte att kontakta oss.
-						Det kan ni göra antingen via detta formulär eller direkt till:
-					</p>
-					<div className="mt-[2rem]">
-						<p className="text-accent text-[1.2rem] font-light">
-							Sandra Brännström
-						</p>
-						<ul className="list-none mt-[1rem]">
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								Sigfrid Edströms Gata 25B
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								72466 Västerås
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								sandra.brannstrom@hotmail.com
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								070-773 91 50
-							</li>
-						</ul>
-					</div>
-					<div className="mt-[2rem]">
-						<p className="text-accent text-[1.2rem] font-light">
-							Rosa Johansson
-						</p>
-						<ul className="list-none mt-[1rem]">
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								Tunnbrödsvägen 3
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								724 84 Västerås
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								rosajohansson@hotmail.se
-							</li>
-							<li className="text-accent text-left mb-[0.3rem] font-thin">
-								073-947 98 79
-							</li>
-						</ul>
-					</div>
-				</div>
-				<form onSubmit={handleSubmit} className="w-full text-[1.5rem]">
-					<div className="flex flex-col my-[2rem]">
-						<label htmlFor="" className="mb-[0.5rem] text-[1.2rem] text-accent">
-							Namn:
-						</label>
-						<input
-							className="h-[3rem] pl-[0.5rem] text-accent text-[1.4rem] border-b-[.5px] border-accent"
-							type="text"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-						/>
-					</div>
-					<div className="flex flex-col my-[2rem]">
-						<label htmlFor="" className="mb-[0.5rem] text-[1.2rem] text-accent">
-							Email:
-						</label>
-						<input
-							className="h-[3rem] pl-[0.5rem] text-[1.4rem] text-accent border-b-[.5px] border-accent"
-							type="text"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-						/>
-					</div>
-					<div className="flex flex-col my-[2rem]">
-						<label htmlFor="" className="mb-[0.5rem] text-[1.2rem] text-accent">
-							Meddelande:
-						</label>
-						<textarea
-							className="h-[10rem] p-[0.5rem] text-[1.4rem] border-b-[.5px] border-accent"
-							value={message}
-							onChange={(e) => setMessage(e.target.value)}
-						/>
-					</div>
-					<div className="flex flex-col my-[2rem]">
-						<button
-							type="submit"
-							className="border-grey border-[1px] bg-accent text-grey p-[1rem] cursor-pointer text-center text-[1.1rem] h-[60px] flex justify-center items-center"
-						>
-							{loading ? (
-								<BarLoader color="white" width={"50%"} />
-							) : (
-								"Skicka meddelande"
-							)}
-						</button>
-					</div>
-				</form>
-				{success && (
-					<SucessModal
-						isOpen={success}
-						onClose={() => setSuccess(false)}
-						title="Tack för ditt meddelande!"
-						message="Vi svarar dig så fort vi kan!"
-					/>
-				)}
-				{error && (
-					<ErrorModal
-						isOpen={!!error}
-						onClose={() => setError(null)}
-						title="Ajdå!"
-						message={error}
-					/>
-				)}
-			</div>
-		</div>
-	);
+  return (
+    <main className="contact-page">
+      <header className="contact-intro"><div className="site-container"><p className="site-eyebrow">Kennel Laverdaboom · Västerås</p><h1>En fråga, en tanke<br /><em>eller bara ett hej.</em></h1><p>Nyfiken på våra hundar eller funderar du på en valp?<br />Du är varmt välkommen att höra av dig till oss.</p></div></header>
+      <div className="site-container contact-layout">
+        <section className="contact-people" aria-labelledby="contact-people-title"><p className="site-eyebrow">Vi finns här</p><h2 id="contact-people-title">Sandra &amp; Rosa</h2><p className="contact-section-description">Skriv några rader eller slå en signal. Vi berättar gärna mer om våra hundar och livet på kenneln.</p><div className="contact-person-list">{contacts.map((person) => <article className="contact-person" key={person.name}><div className="contact-person-heading"><Image src={`${assetUrl}${person.image}`} alt={person.name} width={64} height={64} unoptimized /><h3>{person.name}</h3></div><address><div><FiMapPin aria-hidden="true" /><span>{person.address}<br />{person.city}</span></div><a href={`mailto:${person.email}`}><FiMail aria-hidden="true" /><span>{person.email}</span></a><a href={`tel:${person.tel}`}><FiPhone aria-hidden="true" /><span>{person.phone}</span></a></address></article>)}</div></section>
+        <section className="contact-form-panel" aria-labelledby="contact-form-title"><p className="site-eyebrow">Låt oss lära känna dig</p><h2 id="contact-form-title">Skriv till oss</h2><p className="contact-section-description">Berätta vad du funderar på. Om du är intresserad av en valp får du gärna beskriva dig själv och din vardag.</p><form onSubmit={handleSubmit} aria-labelledby="contact-form-title" aria-busy={loading}><p className="contact-required-note">Alla fält är obligatoriska.</p><fieldset disabled={loading}><legend className="sr-only">Dina kontaktuppgifter och ditt meddelande</legend><div className="contact-field"><label htmlFor="contact-name">Ditt namn</label><input id="contact-name" name="name" autoComplete="name" required value={name} onChange={(event) => setName(event.target.value)} placeholder="För- och efternamn" /></div><div className="contact-field"><label htmlFor="contact-email">E-postadress</label><input id="contact-email" name="email" type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} placeholder="namn@exempel.se" /></div><div className="contact-field"><label htmlFor="contact-message">Ditt meddelande</label><textarea id="contact-message" name="message" required rows={6} value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Hej Sandra och Rosa…" /></div><button type="submit" className="site-button site-button-green contact-submit">{loading ? "Skickar meddelande…" : "Skicka meddelande"}<FiArrowUpRight aria-hidden="true" /></button></fieldset><div className="contact-feedback" aria-live="polite" aria-atomic="true">{success && <p className="contact-success"><FiCheckCircle aria-hidden="true" /><span>Tack för ditt meddelande! Vi svarar dig så fort vi kan.</span></p>}</div>{error && <p className="contact-error" role="alert">{error}</p>}</form></section>
+      </div>
+      <section className="contact-explore"><div className="site-container"><div><p className="site-eyebrow">Medan du är här</p><h2>Lär känna vår <em>hundfamilj.</em></h2></div><Link href="/dogs" className="site-text-link">Möt våra hundar <FiArrowUpRight aria-hidden="true" /></Link></div></section>
+    </main>
+  );
 }

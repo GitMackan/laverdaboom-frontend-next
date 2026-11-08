@@ -1,35 +1,10 @@
-import { assetUrl } from "@/assets/constants";
-import AnimatedListItem from "@/components/AnimatedListItem";
-import React from "react";
+﻿import type { Metadata } from "next";
+import Link from "next/link";
+import { FiArrowUpRight } from "react-icons/fi";
+import PuppyPageShell from "@/components/PuppyPageShell";
 
-const PlannedPuppies = () => {
-	return (
-		<div className="pt-[15vh]">
-			<div
-				className="flex flex-col justify-start pb-[5rem] min-h-[80dvh]"
-				style={{
-					background:
-						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-				}}
-			>
-				<ul>
-					<AnimatedListItem index={0}>
-						<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-							Planerade valpar
-						</h2>
-					</AnimatedListItem>
-					<AnimatedListItem index={0}>
-						<p className="text-center text-accent my-[5rem] font-secondary text-[0.9rem] lg:text-[1.1em]  w-[90%] lg:w-[50%] m-auto">
-							I juni väntar vi med stor glädje vår valpkull efter Daxwall´s Dream Come True & Huntaks Look At Me Now ✨🐾
-Förväntningarna är en kull med trevliga hundar, både mentalt och exteriört. Pappan bär även genen N/CDDY, så det blir spännande att se om den förs vidare till någon av valparna.
-						</p>
-						<img src={`${assetUrl}hippo-knopa.png`} alt="" className="max-h-[100%] w-[90%] lg:w-[60%] max-w-[100%] cursor-pointer rounded-xl m-auto" />
-					</AnimatedListItem>
-				</ul>
+export const metadata: Metadata = { title: "Planerade valpar | Kennel Laverdaboom", description: "Information om kommande valpkullar hos Kennel Laverdaboom. Hör av dig för att veta mer om våra planer." };
 
-			</div>
-		</div>
-	);
-};
-
-export default PlannedPuppies;
+export default function PlannedPuppies() {
+  return <PuppyPageShell active="/puppies/planned" eyebrow="Blicka framåt" title={<>Planer för <em>små tassar.</em></>} description="Här delar vi våra planer för kommande valpkullar."><section className="site-container puppy-status-section" aria-labelledby="puppy-plans-title"><div className="puppy-status-card"><p className="site-eyebrow">Kommande kullar</p><h2 id="puppy-plans-title">Nya planer presenteras här.</h2><p>När vi har en ny planerad valpkull att berätta om uppdaterar vi den här sidan. Kontakta oss gärna om du vill veta mer om våra planer eller berätta om ditt intresse för en valp.</p><div className="site-actions"><Link href="/contact" className="site-button site-button-green">Prata valp med oss <FiArrowUpRight aria-hidden="true" /></Link><Link href="/puppies" className="site-text-link">Läs om att köpa valp <FiArrowUpRight aria-hidden="true" /></Link></div></div><aside className="puppy-plans-note"><h2>Från planering till valpalbum</h2><p>Kullen efter Daxwall&apos;s Dream Come True och Huntaks Look At Me Now finns nu bland våra tidigare valpkullar.</p><Link href="/puppies/previous#senaste-kullen" className="site-text-link">Se kullen i valpalbumet <FiArrowUpRight aria-hidden="true" /></Link></aside></section></PuppyPageShell>;
+}

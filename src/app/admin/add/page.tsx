@@ -86,7 +86,7 @@ const AddNew = () => {
   ];
 
   return (
-    <div className="pt-[25vh] mb-[5rem]">
+    <div className="mb-[5rem]">
       <div
         className="max-w-[800px] p-[3rem] m-auto mt-[0rem] border-accent border-[3px] w-full flex flex-col items-start"
         style={{

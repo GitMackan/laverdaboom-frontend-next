@@ -1,236 +1,53 @@
-"use client";
-
+﻿import Image from "next/image";
+import Link from "next/link";
+import { FiArrowRight, FiArrowUpRight, FiHeart, FiHome, FiSun } from "react-icons/fi";
 import { assetUrl } from "@/assets/constants";
-import AnimatedListItem from "@/components/AnimatedListItem";
 import HeroSection from "@/components/HeroSection";
-import Reveal from "@/components/Reveal";
-import { useRef } from "react";
-import { FaDog } from "react-icons/fa";
-import { BsGenderFemale, BsGenderMale, BsHeart } from "react-icons/bs";
+
+const puppyImages = [
+  { file: "bella-orange.jpg", name: "Taxvalp med orange halsband" },
+  { file: "bella-gul.jpg", name: "Taxvalp med gult halsband" },
+  { file: "bella-lila.jpg", name: "Taxvalp med lila halsband" },
+  { file: "bella-red.jpg", name: "Taxvalp med rött halsband" },
+];
 
 export default function Home() {
-	const newsRef = useRef<HTMLDivElement>(null);
-	return (
-		<div>
-			<HeroSection />
-			<div
-				className="min-h-dvh"
-				style={{
-					background:
-						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-				}}
-			>
-				<div id="news" className="pb-[3.5rem] md:pb-[8rem] ">
-					<div
-						className="pt-[12rem] flex lg:px-[3rem] w-full gap-[5rem] flex-col lg:flex-row"
-						id="news"
-						ref={newsRef}
-					>
-						<div className="flex-1">
-							<div className="relative items-center flex justify-center">
-								<div
-									className="absolute w-[200px] h-[200px] opacity-[10%]"
-									style={{ top: "-100px", left: "75px" }}
-								>
-									<Reveal>
-										<img
-											src="https://laverdaboom.s3.eu-north-1.amazonaws.com/uploads/dog-paw.png"
-											className="w-full h-full max-w-[800px]"
-										/>
-									</Reveal>
-								</div>
-								<Reveal>
-									<h2 className="font-cursive text-[6rem] text-accent mb-[2rem] w-fit m-auto">
-										Vilka är vi?
-									</h2>
-								</Reveal>
-							</div>
-							<Reveal>
-								<p className="tracking-[0.03rem] font-primary leading-[2rem] px-[1.5rem] lg:px-[3rem] font-light">
-									Laverdabooms kennel är en liten kennel som föder upp trevliga
-									och sunda hundar i hemmamiljö. Kenneln registrerades 2015 och
-									2016 fick vi vår första kull med långhåriga Standardtaxar. Vi
-									som äger kenneln är Sandra och min mamma Rosa. På fritiden
-									ägnar vi mycket tid till våra hundar och familjen.
-									Rallylydnad, Utställning och viltspår är något vi gillar att
-									aktivera våra hundar med. Vi Strävar efter att avla friska och
-									trevliga hundar och lägger stor vikt i att hitta de perfekta
-									hemmen till våra valpar.
-								</p>
-							</Reveal>
-						</div>
-						<div className="news-right flex flex-1">
-							<Reveal>
-								<img
-									src={`${assetUrl}laverdaboom.jpeg`}
-									alt=""
-									className="rounded-xl"
-									style={{
-										boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-									}}
-								/>
-							</Reveal>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div
-				className="flex flex-col justify-center md:pb-[5rem]"
-				style={{
-					background:
-						"linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 235, 235, 1) 100%)",
-				}}
-			>
-				<div className="py-[3rem] flex-[2] flex flex-col-reverse  m-auto gap-[5rem] medium:gap-[2rem] items-center justify-center max-w-[1600px] w-[100%] lg:w-[90%] lg:py-[3rem] lg:flex-row lg:flex">
-					<div className="max-w-[1600px] flex flex-col w-full lg:w-[80%] m-auto">
-						<ul>
-							<AnimatedListItem index={0}>
-								<h2 className="text-center text-accent my-[5rem] font-cursive text-[3.5rem] lg:text-[4rem] border-detail border-b-[1px] w-fit m-auto">
-									Vår senaste valpkull
-								</h2>
-							</AnimatedListItem>
-						</ul>
-						<ul className="flex flex-col lg:flex-row justify-center items-center  md:pb-[3rem] mb-[3rem] gap-[3rem]">
-							<AnimatedListItem index={0} className="flex-1">
-								<div className="p-[3rem]">
-									<div className="flex flex-col gap-[1.5rem]">
-										<div className="flex justify-stretch items-center gap-[1rem] border-b-[.5px] border-b-detail pb-[1.5rem]">
-											<BsGenderMale size={32} /> 
-											<div>
-												<p className="text-[#767171] font-secondary">
-													SE U(V)CH
-												</p>
-												<h3 className="font-secondary font-medium text-[1.5rem]">
-													Bella Rose Marzenie Gabrysi
-												</h3>
-
-												<p className="text-[#767171] font-secondary">
-													Eye test - Clear
-												</p>
-												<p className="text-[#767171] font-secondary">
-													CDDY/CDDY
-												</p>
-											</div>
-										</div>
-										<div className="flex justify-stretch items-center gap-[1rem]">
-											<BsGenderFemale size={32} />
-											<div>
-												<p className="text-[#767171] font-secondary">
-													SE U(V)CH SE VCH
-												</p>
-												<h3 className="font-secondary font-medium text-[1.5rem]">
-													Pazir's Sirocco
-												</h3>
-
-												<p className="text-[#767171] font-secondary">
-													Eye test - Clear
-												</p>
-												<p className="text-[#767171] font-secondary">IVDD 0</p>
-											</div>
-										</div>
-									</div>
-
-									<p className="my-[1.5rem] font-secondary">2024-08-12</p>
-									<ul className="list-none">
-										<li className="mb-[1rem]">
-											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-												<FaDog size={18} />
-												<div>
-													<p>Laverdabooms PS TAMINA</p>
-													{/* <p>SE17821/2021</p> */}
-												</div>
-											</div>
-										</li>
-									</ul>
-									<ul>
-										<li className="mb-[1rem]">
-											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-												<FaDog size={18} />
-												<div>
-													<p>Laverdabooms PS TESS</p>
-													{/* <p>SE17822/2021</p> */}
-												</div>
-											</div>
-										</li>
-									</ul>
-									<ul>
-										<li className="mb-[1rem]">
-											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-												<FaDog size={18} />
-												<div>
-													<p>Laverdabooms PS TINDRA</p>
-													{/* <p>SE17819/2021</p> */}
-												</div>
-											</div>
-										</li>
-									</ul>
-									<ul>
-										<li className="mb-[1rem]">
-											<div className="flex items-center gap-[1rem] font-secondary leading-[1.5rem] border-[#faeded] border-b-[2px] p-[1rem]">
-												<FaDog size={18} />
-												<div>
-													<p>Laverdabooms PS TOSCA</p>
-													{/* <p>SE17820/2021</p> */}
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</AnimatedListItem>
-							<div className="flex flex-col w-[100%] flex-1 gap-[3rem]">
-								<AnimatedListItem index={1} className="flex-1">
-									<div>
-										<div
-											className="grid gap-[0.5rem] w-full m-auto"
-											style={{ gridTemplateColumns: "1fr 1fr" }}
-										>
-											<img
-												src={`${assetUrl}bella-orange.jpg`}
-												className="w-full rounded-xl "
-												style={{
-													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-												}}
-											/>
-											<img
-												src={`${assetUrl}bella-gul.jpg`}
-												className="w-full rounded-xl "
-												style={{
-													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-												}}
-											/>
-											<img
-												src={`${assetUrl}bella-lila.jpg`}
-												className="w-full rounded-xl "
-												style={{
-													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-												}}
-											/>
-											<img
-												src={`${assetUrl}bella-red.jpg`}
-												className="w-full rounded-xl "
-												style={{
-													boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-												}}
-											/>
-										</div>
-									</div>
-								</AnimatedListItem>
-								<AnimatedListItem index={1} className="flex-1">
-									<div>
-										<img
-											src={`${assetUrl}bella-with-puppies.jpg`}
-											className="w-full rounded-xl "
-											style={{
-												boxShadow: "0px 0px 50px 0px rgba(0, 0, 0, 0.5)",
-											}}
-										/>
-									</div>
-								</AnimatedListItem>
-							</div>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <main className="home-page">
+      <HeroSection />
+      <div className="home-intro-strip"><div className="site-container"><span>Långhårig standardtax</span><span>En del av familjen</span><span>Kennel sedan 2015</span></div></div>
+      <section id="om-oss" className="site-container home-about" aria-labelledby="about-title">
+        <div className="home-about-photo">
+          <Image src={`${assetUrl}laverdaboom.jpeg`} alt="Hundarna hos Kennel Laverdaboom" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" />
+          <div className="home-photo-note"><span>Uppfödning med hjärtat</span><span>sedan 2015</span></div>
+        </div>
+        <div className="home-about-copy">
+          <p className="site-eyebrow">Välkommen till oss</p>
+          <h2 id="about-title">Ett litet kennelliv.<br /><em>En stor passion.</em></h2>
+          <p className="site-lead">Vi är Sandra och Rosa, mor och dotter med en gemensam kärlek till taxen.</p>
+          <p>Laverdaboom är en liten kennel i Västerås där hundarna är en självklar del av familjen. Kenneln registrerades 2015 och året därpå välkomnade vi vår första kull långhåriga standardtaxar.</p>
+          <p>Vardagen delar vi med våra hundar och vår familj. Vi tycker om att vara aktiva tillsammans – med rallylydnad, utställning och viltspår. I vår uppfödning strävar vi efter friska, sunda och trevliga hundar, och lägger stor omsorg på att hitta rätt hem till varje valp.</p>
+          <Link href="/contact" className="site-text-link">Lär känna oss <FiArrowUpRight aria-hidden="true" /></Link>
+        </div>
+      </section>
+      <section className="home-values" aria-label="Det vi värdesätter"><div className="site-container home-values-grid">
+        <div><FiHome aria-hidden="true" /><h3>En trygg start</h3><p>Våra valpar växer upp i hemmiljö, nära oss och vardagens alla små äventyr.</p></div>
+        <div><FiHeart aria-hidden="true" /><h3>Omsorg i varje steg</h3><p>Vi strävar efter sunda, friska hundar med ett trevligt temperament.</p></div>
+        <div><FiSun aria-hidden="true" /><h3>Ett aktivt liv tillsammans</h3><p>Från viltspår till rallylydnad. Vi älskar att upptäcka vad våra hundar kan.</p></div>
+      </div></section>
+      <section className="site-container home-discover" aria-labelledby="discover-title">
+        <div className="home-section-heading"><div><p className="site-eyebrow">Livet med tax</p><h2 id="discover-title">Hitta din väg <em>hos oss.</em></h2></div><p>Lär känna våra hundar och läs mer om<br className="desktop-break" /> resan till en ny familjemedlem.</p></div>
+        <div className="home-discover-grid">
+          <Link href="/dogs" className="home-feature-card"><div className="home-feature-image"><Image src={`${assetUrl}laverdaboom.jpeg`} alt="Våra taxar" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="home-feature-caption"><div><p className="site-eyebrow">Personligheter på fyra tassar</p><h3>Våra hundar</h3></div><span className="site-round-arrow"><FiArrowUpRight aria-hidden="true" /></span></div></Link>
+          <Link href="/puppies" className="home-feature-card"><div className="home-feature-image"><Image src={`${assetUrl}bella-with-puppies.jpg`} alt="Taxmamma tillsammans med sina valpar" fill unoptimized sizes="(max-width: 800px) 100vw, 50vw" /></div><div className="home-feature-caption"><div><p className="site-eyebrow">Början på något fint</p><h3>Att köpa valp</h3></div><span className="site-round-arrow"><FiArrowUpRight aria-hidden="true" /></span></div></Link>
+        </div>
+      </section>
+      <section className="home-litter" aria-labelledby="litter-title"><div className="site-container">
+        <div className="home-section-heading"><div><p className="site-eyebrow">Ur vårt valpalbum · 12 augusti 2024</p><h2 id="litter-title">Fyra små <em>personligheter.</em></h2></div><Link href="/puppies/previous" className="site-text-link">Tidigare valpkullar <FiArrowRight aria-hidden="true" /></Link></div>
+        <div className="home-puppy-grid">{puppyImages.map((image) => <div className="home-puppy-photo" key={image.file}><Image src={`${assetUrl}${image.file}`} alt={image.name} fill unoptimized sizes="(max-width: 650px) 50vw, 25vw" /></div>)}</div>
+        <div className="home-litter-details"><div><p className="site-eyebrow">Föräldrar</p><p>Bella Rose Marzenie Gabrysi &amp; Pazir&apos;s Sirocco</p><p className="home-litter-health">Bella Rose: SE U(V)CH · Ögonlyst utan anmärkning · CDDY/CDDY<br />Pazir&apos;s Sirocco: SE U(V)CH, SE VCH · Ögonlyst utan anmärkning · IVDD 0</p></div><div><p className="site-eyebrow">Laverdabooms PS</p><p>Tamina · Tess · Tindra · Tosca</p></div></div>
+      </div></section>
+      <section className="site-container home-contact"><p className="site-eyebrow">Vi hörs gärna</p><h2>Nyfiken på taxlivet?<br /><em>Låt oss prata.</em></h2><p>Har du frågor om våra hundar eller funderar du på en valp?<br className="desktop-break" /> Du är varmt välkommen att höra av dig.</p><Link href="/contact" className="site-button site-button-green">Kontakta oss <FiArrowUpRight aria-hidden="true" /></Link></section>
+    </main>
+  );
 }

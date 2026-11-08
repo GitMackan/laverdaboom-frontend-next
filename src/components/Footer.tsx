@@ -1,118 +1,20 @@
-"use client";
-
-import React from "react";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import Image from "next/image";
+import Link from "next/link";
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { assetUrl } from "@/assets/constants";
-import AnimatedListItem from "./AnimatedListItem";
-import { usePathname } from "next/navigation";
+import { shopEnabled } from "@/lib/features";
 
-const Footer = () => {
-	const pathname = usePathname()
+const contacts = [
+  { name: "Sandra Brännström", image: "sandra.jpeg", address: "Sigfrid Edströms Gata 25B", city: "724 66 Västerås", email: "sandra.brannstrom@hotmail.com", facebook: "https://www.facebook.com/profile.php?id=100008493274506", instagram: "https://www.instagram.com/sandra_kennellaverdaboom/" },
+  { name: "Rosa Johansson", image: "rosa.jpeg", address: "Tunnbrödsvägen 3", city: "724 84 Västerås", email: "rosajohansson@hotmail.se", facebook: "https://www.facebook.com/rosa.johansson.5", instagram: "https://www.instagram.com/rosaajohansson/" },
+];
 
-	if (pathname === '/news') return <></>
-	return (
-		<div
-			className="min-h-[60vh] flex flex-col justify-center pt-[10vh]"
-			style={{
-				background:
-					"radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(204, 210, 210, 1) 0%, rgba(196, 203, 203, 1) 0%, rgba(176, 186, 186, 1) 0%, rgba(151, 164, 165, 1) 0%, rgba(109, 127, 128, 1) 0%, rgba(50, 75, 76, 1) 100%)",
-			}}
-		>
-			<ul className="flex flex-col medium:flex-row gap-[4rem] items-center justify-around m-auto w-full">
-				<AnimatedListItem index={0}>
-					<div className="flex flex-col gap-[0.3rem] text-center text-[1.1rem]">
-						<div className="max-w-[300px] mb-[2rem]">
-							<img
-								src={`${assetUrl}sandra.jpeg`}
-								className="rounded-full max-w-[100%] border-solid border-[1px] border-secondary"
-							/>
-						</div>
-						<p className="mb-[1rem] text-[2rem] text-grey">Sandra Brännström</p>
-						<p className="text-grey">Sigfrid Edströms Gata 25B</p>
-						<p className="text-grey">724 66 Västerås</p>
-						<a
-							href="mailto:sandra.brannstrom@hotmail.se"
-							className="text-grey underline"
-						>
-							sandra.brannstrom@hotmail.com
-						</a>
-						<div className="flex justify-center gap-[2rem] mt-[1rem]">
-							<div className="text-[3rem] cursor-pointer">
-								<FaFacebook
-									color="white"
-									onClick={() => {
-										window.open(
-											"https://www.facebook.com/profile.php?id=100008493274506",
-											"_blank"
-										);
-									}}
-								/>
-							</div>
-
-							<div className="text-[3rem] cursor-pointer">
-								<FaInstagram
-									color="white"
-									onClick={() => {
-										window.open(
-											"https://www.instagram.com/sandra_kennellaverdaboom/",
-											"_blank"
-										);
-									}}
-								/>
-							</div>
-						</div>
-					</div>
-				</AnimatedListItem>
-				<AnimatedListItem index={1}>
-					<div className="flex flex-col gap-[0.3rem] text-center text-[1.1rem]">
-						<div className="max-w-[300px] mb-[2rem]">
-							<img
-								src={`${assetUrl}rosa.jpeg`}
-								className="rounded-full max-w-[100%] border-solid border-[1px] border-secondary"
-							/>
-						</div>
-						<p className="mb-[1rem] text-[2rem] text-grey">Rosa Johansson</p>
-						<p className="text-grey">Tunnbrödsvägen 3</p>
-						<p className="text-grey">724 84 Västerås</p>
-						<a
-							className="text-grey underline"
-							href="mailto:rosajohansson@hotmail.se"
-						>
-							rosajohansson@hotmail.se
-						</a>
-						<div className="flex justify-center gap-[2rem] mt-[1rem]">
-							<div className="text-[3rem] cursor-pointer">
-								<FaFacebook
-									color="white"
-									onClick={() => {
-										window.open(
-											"https://www.facebook.com/rosa.johansson.5",
-											"_blank"
-										);
-									}}
-								/>
-							</div>
-
-							<div className="text-[3rem] cursor-pointer">
-								<FaInstagram
-									color="white"
-									onClick={() => {
-										window.open(
-											"https://www.instagram.com/rosaajohansson/",
-											"_blank"
-										);
-									}}
-								/>
-							</div>
-						</div>
-					</div>
-				</AnimatedListItem>
-			</ul>
-			<p className="text-grey text-center text-[14px] my-[3rem]">
-				© 2023 Kennel Laverdaboom
-			</p>
-		</div>
-	);
-};
-
-export default Footer;
+export default function Footer() {
+  return (
+    <footer className="site-footer"><div className="site-container">
+      <div className="site-footer-grid"><div className="site-footer-intro"><Link href="/" className="site-footer-brand">Laverdaboom</Link><p>En liten kennel med stor kärlek<br />till den långhåriga standardtaxen.</p><Link href="/contact" className="site-footer-contact">Välkommen att höra av dig ↗</Link><nav aria-label="Länkar i sidfoten"><Link href="/dogs">Våra hundar</Link><Link href="/puppies">Valpar</Link>{shopEnabled && <Link href="/shop">Shop</Link>}</nav></div>
+      {contacts.map((contact) => <div className="site-footer-person" key={contact.name}><div className="site-footer-person-heading"><Image src={`${assetUrl}${contact.image}`} alt={contact.name} width={56} height={56} unoptimized /><h2>{contact.name}</h2></div><address><p>{contact.address}<br />{contact.city}</p><a href={`mailto:${contact.email}`}>{contact.email}</a></address><div className="site-socials"><a href={contact.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${contact.name} på Facebook`}><FaFacebookF aria-hidden="true" /></a><a href={contact.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${contact.name} på Instagram`}><FaInstagram aria-hidden="true" /></a></div></div>)}
+      </div><div className="site-footer-bottom"><span>© {new Date().getFullYear()} Kennel Laverdaboom</span><span>Uppfödda med omsorg. Älskade för livet.</span></div>
+    </div></footer>
+  );
+}

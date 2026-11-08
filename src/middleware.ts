@@ -1,8 +1,14 @@
 // middleware.ts (root of your project)
 import { createServerClient } from '@supabase/ssr'
 import { NextRequest, NextResponse } from 'next/server'
+import { shopEnabled } from './lib/features'
 
 export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === '/shop' || request.nextUrl.pathname.startsWith('/shop/')) {
+    return shopEnabled
+      ? NextResponse.next()
+      : NextResponse.redirect(new URL('/', request.url))
+  }
   const response = NextResponse.next()
 
   const supabase = createServerClient(
@@ -31,5 +37,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*']
+  matcher: ['/admin/:path*', '/shop/:path*']
 }
